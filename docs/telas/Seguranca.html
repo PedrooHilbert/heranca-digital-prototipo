@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segurança · Herança Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+  <div class="bar">
+    <a class="back" href="../index.html">← Protótipo</a>
+    <span class="sep">/</span>
+    <div class="brand"><span class="dot">H</span> Segurança</div>
+    <span class="tag">Segurança</span>
+  </div>
+
+  <div class="stage">
+    <div class="shot ">
+      <img src="../assets/Seguranca.png" alt="Segurança">
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="inner">
+      <span class="lbl">Fluxo sugerido</span>
+      <a class="btn primary" href="CofreTrancado.html">Cofre</a>
+      <a class="btn " href="AparelhoNovo.html">Aparelho novo</a>
+      <span class="spacer"></span>
+      <a class="btn ghost" href="Confirmar.html">← Anterior</a>
+      <a class="btn ghost" href="CofreTrancado.html">Próxima →</a>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')location.href='Confirmar.html';
+    if(e.key==='ArrowRight')location.href='CofreTrancado.html';
+    if(e.key==='Escape')location.href='../index.html';
+  });
+  </script>
+</body>
+</html>

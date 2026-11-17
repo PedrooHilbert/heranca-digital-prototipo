@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Herdeiros · Herança Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+  <div class="bar">
+    <a class="back" href="../index.html">← Protótipo</a>
+    <span class="sep">/</span>
+    <div class="brand"><span class="dot">H</span> Herdeiros</div>
+    <span class="tag">Titular</span>
+  </div>
+
+  <div class="stage">
+    <div class="shot ">
+      <img src="../assets/Herdeiros.png" alt="Herdeiros">
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="inner">
+      <span class="lbl">Fluxo sugerido</span>
+      <a class="btn primary" href="HerdeiroDetalhe.html">Ver herdeiro</a>
+      <a class="btn " href="Convite.html">Convidar</a>
+      <a class="btn " href="AcessoLiberado.html">Acesso liberado</a>
+      <span class="spacer"></span>
+      <a class="btn ghost" href="Estados.html">← Anterior</a>
+      <a class="btn ghost" href="HerdeiroDetalhe.html">Próxima →</a>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')location.href='Estados.html';
+    if(e.key==='ArrowRight')location.href='HerdeiroDetalhe.html';
+    if(e.key==='Escape')location.href='../index.html';
+  });
+  </script>
+</body>
+</html>
