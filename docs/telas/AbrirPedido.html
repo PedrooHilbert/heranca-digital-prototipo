@@ -1,44 +1,98 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-name="AbrirPedido" data-kind="desktop">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abrir pedido de acesso · Herança Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../estilo.css">
+<title>Abrir pedido</title>
+<script src="../dc-runtime.js"></script>
+<link rel="stylesheet" href="../transicao.css">
+<script defer src="../transicao.js"></script>
 </head>
 <body>
-  <div class="bar">
-    <a class="back" href="../index.html">← Protótipo</a>
-    <span class="sep">/</span>
-    <div class="brand"><span class="dot">H</span> Abrir pedido de acesso</div>
-    <span class="tag">Herdeiro</span>
-  </div>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
 
-  <div class="stage">
-    <div class="shot ">
-      <img src="../assets/AbrirPedido.png" alt="Abrir pedido de acesso">
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="min-height:1100px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+  <header style="background:#0B3F3D; padding:14px 56px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px">
+    <div style="display:flex; align-items:center; gap:10px">
+      <img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="height:30px; width:auto">
+      <span style="font-size:16px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span>
+      <span style="margin-left:10px; padding-left:14px; border-left:1px solid rgba(255,255,255,0.2); font-size:14px; color:#A9C7C2">Herdeiro</span>
     </div>
-  </div>
-
-  <div class="flow">
-    <div class="inner">
-      <span class="lbl">Fluxo sugerido</span>
-      <a class="btn primary" href="Solicitacao.html">Enviar pedido</a>
-      <span class="spacer"></span>
-      <a class="btn ghost" href="Regras.html">← Anterior</a>
-      <a class="btn ghost" href="Solicitacao.html">Próxima →</a>
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="height:36px; width:36px; border-radius:50%; background:#7FD1C5; color:#0B3F3D; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700">LS</span>
+      <span style="font-size:14px; font-weight:600; color:#FFFFFF">Lucas Souza</span>
+      <a href="Main.html" style="font-size:13px; color:#A9C7C2">Sair</a>
     </div>
-  </div>
+  </header>
 
-  <script>
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')location.href='Regras.html';
-    if(e.key==='ArrowRight')location.href='Solicitacao.html';
-    if(e.key==='Escape')location.href='../index.html';
-  });
-  </script>
+  <main style="max-width:1080px; margin:0 auto; padding:48px 32px 64px; box-sizing:border-box; display:flex; flex-direction:column; gap:28px">
+    <div style="display:flex; flex-direction:column; gap:8px"><h1 style="margin:0; font-size:30px; font-weight:700">Abrir pedido de liberação</h1><p style="margin:0; font-size:15px; line-height:1.55; color:#44544F">Sentimos muito pela sua perda. Vamos guiar você, um passo de cada vez.</p></div>
+    <nav aria-label="Etapas" style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:18px 24px; display:flex; flex-wrap:wrap; align-items:center; gap:14px 16px; box-sizing:border-box"><div style="display:flex; align-items:center; gap:10px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#0E5A57; color:#FFFFFF; display:flex; align-items:center; justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M5 12l4 4 10-10"/></svg></span><span style="font-size:14px; font-weight:500; color:#13211F">Quem faleceu</span></div><span style="flex:1 1 24px; min-width:24px; height:2px; background:#DCE3E0"></span><div style="display:flex; align-items:center; gap:10px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#FFFFFF; border:3px solid #0E5A57; color:#0E5A57; box-sizing:border-box; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">2</span><span style="font-size:14px; font-weight:700; color:#13211F">Documentos</span></div><span style="flex:1 1 24px; min-width:24px; height:2px; background:#DCE3E0"></span><div style="display:flex; align-items:center; gap:10px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#5E6E69; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">3</span><span style="font-size:14px; font-weight:500; color:#5E6E69">Revisar e enviar</span></div></nav>
+    <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start">
+      <section style="flex:1 1 520px; min-width:0; background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:32px; box-sizing:border-box; display:flex; flex-direction:column; gap:20px">
+        <div style="display:flex; flex-direction:column; gap:4px"><h2 style="margin:0; font-size:20px; font-weight:700">Envie os documentos</h2><p style="margin:0; font-size:14px; line-height:1.55; color:#44544F">PDF, JPG ou PNG de até 10 MB. Fotos nítidas, com os quatro cantos visíveis.</p></div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 20px; padding:18px 20px; border:1px solid #DCE3E0; background:#FFFFFF; border-radius:14px"><div style="display:flex; flex-direction:column; gap:3px; flex:1 1 240px"><span style="font-size:15px; font-weight:600">Certidão de óbito de Maria Souza</span><span style="font-size:13px; line-height:1.5; color:#5E6E69">Frente e verso.</span></div><div style="display:flex; align-items:center; gap:18px"><span style="display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:#15803D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M5 12l4 4 10-10"/></svg>certidao_obito.pdf</span><button type="button" onClick="{{hd.a0F}}" data-feito="{{hd.a0D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; font-size:14px; font-weight:600">{{hd.a0}}</button></div></div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 20px; padding:18px 20px; border:1.5px dashed #7C8D88; background:#F8FAF9; border-radius:14px"><div style="display:flex; flex-direction:column; gap:3px; flex:1 1 240px"><span style="font-size:15px; font-weight:600">Documento do inventário</span><span style="font-size:13px; line-height:1.5; color:#5E6E69">Alvará ou formal de partilha (Justiça) ou escritura de inventário (cartório).</span></div><div style="display:flex; align-items:center; gap:18px"><button type="button" onClick="{{hd.a1F}}" data-feito="{{hd.a1D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; height:42px">{{hd.a1}}</button></div></div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 20px; padding:18px 20px; border:1.5px dashed #7C8D88; background:#F8FAF9; border-radius:14px"><div style="display:flex; flex-direction:column; gap:3px; flex:1 1 240px"><span style="font-size:15px; font-weight:600">Seu documento com foto</span><span style="font-size:13px; line-height:1.5; color:#5E6E69">Foto do RG ou da CNH, frente e verso.</span></div><div style="display:flex; align-items:center; gap:18px"><button type="button" onClick="{{hd.a2F}}" data-feito="{{hd.a2D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; height:42px">{{hd.a2}}</button></div></div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 20px; padding:18px 20px; border:1.5px dashed #7C8D88; background:#F8FAF9; border-radius:14px"><div style="display:flex; flex-direction:column; gap:3px; flex:1 1 240px"><span style="font-size:15px; font-weight:600">Selfie para confirmar que é você</span><span style="font-size:13px; line-height:1.5; color:#5E6E69">Um parceiro de verificação confere se é uma pessoa real e se o rosto bate com o documento. Suas imagens não ficam guardadas após a conferência.</span></div><div style="display:flex; align-items:center; gap:18px"><button type="button" onClick="{{hd.a3F}}" data-feito="{{hd.a3D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:42px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font-size:15px; font-weight:600; text-decoration:none">{{hd.a3}}</button></div></div>
+        <div style="display:flex; flex-direction:column; gap:14px; padding-top:6px; border-top:1px solid #E6ECE9"><h3 style="margin:0; font-size:16px; font-weight:700">Quem faz o pedido?</h3>
+          <label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="radio" name="q" checked style="width:20px; height:20px; margin:0; accent-color:#0E5A57">Sou herdeiro de Maria</label>
+          <label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="radio" name="q" style="width:20px; height:20px; margin:0; accent-color:#0E5A57">Sou o advogado ou inventariante</label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px"><div style="display:flex; flex-direction:column; gap:7px"><label for="an" style="font-size:14px; font-weight:600">Nome do advogado (se houver)</label><input id="an" type="text" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><div style="display:flex; flex-direction:column; gap:7px"><label for="ao" style="font-size:14px; font-weight:600">OAB (número e UF)</label><input id="ao" type="text" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"><span style="font-size:13px; line-height:1.5; color:#5E6E69">Ex.: 123.456/SP</span></div></div>
+        </div>
+        <label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" style="width:20px; height:20px; margin:0; accent-color:#0E5A57">Declaro que as informações são verdadeiras</label>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px"><a href="Solicitacao.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">Continuar</a><a href="Main.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">Salvar e continuar depois</a></div>
+      </section>
+      <aside style="flex:0 1 320px; min-width:280px; background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:16px">
+        <h2 style="margin:0; font-size:17px; font-weight:700">Como funciona depois</h2>
+        <ol style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:10px; font-size:14px; line-height:1.55; color:#44544F"><li>Conferimos sua identidade (selfie e documento) e a equipe confere os documentos.</li><li>Todos os herdeiros são avisados.</li><li>Começa a carência de 30 dias. Quem discordar pode contestar.</li><li>Cada herdeiro recebe o que foi destinado a ele.</li></ol>
+        <p style="margin:0; padding-top:14px; border-top:1px solid #E6ECE9; font-size:13px; line-height:1.55; color:#5E6E69">Dúvidas? Responda na tela do pedido. Um validador lê e responde.</p>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1100}}'>
+class Component extends DCLogic {
+  hdAcoes() {
+    const A = [["a0", "Trocar", "Trocado"],["a1", "Enviar arquivo ou foto", "Arquivo enviado"],["a2", "Enviar arquivo ou foto", "Arquivo enviado"],["a3", "Tirar selfie", "Selfie enviada"]];
+    const st = this.state || {};
+    const o = {};
+    A.forEach(([k, ini, dep]) => {
+      const alterna = dep.startsWith('<->');
+      const alt = alterna ? dep.slice(3) : dep;
+      const on = !!st['hd_' + k];
+      o[k] = on ? alt : ini;
+      o[k + 'D'] = on ? '1' : '0';
+      o[k + 'F'] = () => this.setState({ ['hd_' + k]: alterna ? !on : true });
+    });
+    return o;
+  }
+  renderVals() {
+    const __hd = this.hdAcoes();
+    return { hd: __hd };
+  }
+}
+</script>
 </body>
 </html>

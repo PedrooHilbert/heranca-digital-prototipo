@@ -1,0 +1,326 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-09T12:30:00Z"
+  },
+  "title": "Herança Digital – Telas MVP",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1360,
+      "h": 960,
+      "expand": "fill",
+      "title": "Entrar",
+      "is_interactive": true
+    },
+    "Codigo2FA.dc.html": {
+      "x": 1440,
+      "y": 0,
+      "w": 1360,
+      "h": 860,
+      "expand": "fill",
+      "title": "Entrar · Código de verificação",
+      "is_interactive": true
+    },
+    "Convite.dc.html": {
+      "x": 0,
+      "y": 1080,
+      "w": 1360,
+      "h": 1100,
+      "expand": "fill",
+      "title": "Herdeiro · Convite recebido",
+      "is_interactive": true
+    },
+    "Configurar.dc.html": {
+      "x": 1440,
+      "y": 1080,
+      "w": 1360,
+      "h": 1180,
+      "expand": "fill",
+      "title": "Titular · Primeiros passos",
+      "is_interactive": true
+    },
+    "Dashboard.dc.html": {
+      "x": 0,
+      "y": 2380,
+      "w": 1360,
+      "h": 1300,
+      "expand": "fill",
+      "title": "Titular · Início",
+      "is_interactive": true
+    },
+    "Inventario.dc.html": {
+      "x": 1440,
+      "y": 2380,
+      "w": 1360,
+      "h": 1100,
+      "expand": "fill",
+      "title": "Titular · Ativos",
+      "is_interactive": true
+    },
+    "NovoAtivo.dc.html": {
+      "x": 0,
+      "y": 3800,
+      "w": 1360,
+      "h": 1180,
+      "expand": "fill",
+      "title": "Titular · Adicionar ativo",
+      "is_interactive": true
+    },
+    "Estados.dc.html": {
+      "x": 1440,
+      "y": 3800,
+      "w": 1360,
+      "h": 1080,
+      "expand": "fill",
+      "title": "Titular · Lista vazia e confirmação",
+      "is_interactive": true
+    },
+    "Herdeiros.dc.html": {
+      "x": 0,
+      "y": 5100,
+      "w": 1360,
+      "h": 1650,
+      "expand": "fill",
+      "title": "Titular · Herdeiros",
+      "is_interactive": true
+    },
+    "HerdeiroDetalhe.dc.html": {
+      "x": 1440,
+      "y": 5100,
+      "w": 1360,
+      "h": 1280,
+      "expand": "fill",
+      "title": "Titular · Detalhe do herdeiro",
+      "is_interactive": true
+    },
+    "Regras.dc.html": {
+      "x": 0,
+      "y": 6870,
+      "w": 1360,
+      "h": 1480,
+      "expand": "fill",
+      "title": "Titular · Liberação",
+      "is_interactive": true
+    },
+    "Seguranca.dc.html": {
+      "x": 1440,
+      "y": 6870,
+      "w": 1360,
+      "h": 3500,
+      "expand": "fill",
+      "title": "Titular · Segurança",
+      "is_interactive": true
+    },
+    "AbrirPedido.dc.html": {
+      "x": 0,
+      "y": 10490,
+      "w": 1360,
+      "h": 1380,
+      "expand": "fill",
+      "title": "Herdeiro · Abrir pedido",
+      "is_interactive": true
+    },
+    "Solicitacao.dc.html": {
+      "x": 1440,
+      "y": 10490,
+      "w": 1360,
+      "h": 1200,
+      "expand": "fill",
+      "title": "Herdeiro · Acompanhar pedido",
+      "is_interactive": true
+    },
+    "Contestacao.dc.html": {
+      "x": 0,
+      "y": 11990,
+      "w": 1360,
+      "h": 900,
+      "expand": "fill",
+      "title": "Herdeiro · Contestar",
+      "is_interactive": true
+    },
+    "AcessoLiberado.dc.html": {
+      "x": 1440,
+      "y": 11990,
+      "w": 1360,
+      "h": 1700,
+      "expand": "fill",
+      "title": "Herdeiro · Acesso liberado",
+      "is_interactive": true
+    },
+    "Validador.dc.html": {
+      "x": 0,
+      "y": 13810,
+      "w": 1360,
+      "h": 1300,
+      "expand": "fill",
+      "title": "Validador · Pedidos",
+      "is_interactive": true
+    },
+    "Advogado.dc.html": {
+      "x": 1440,
+      "y": 13810,
+      "w": 1360,
+      "h": 1300,
+      "expand": "fill",
+      "title": "Advogado · Inventário",
+      "is_interactive": true
+    },
+    "AvisoObito.dc.html": {
+      "x": 0,
+      "y": 15230,
+      "w": 1360,
+      "h": 760,
+      "expand": "fill",
+      "title": "Titular · Aviso de óbito (e-mail)",
+      "is_interactive": true
+    },
+    "Mobile-Painel.dc.html": {
+      "x": 0,
+      "y": 16150,
+      "w": 390,
+      "h": 1500,
+      "expand": "fill",
+      "title": "Titular · Início (celular)",
+      "is_interactive": true
+    },
+    "Mobile-Convite.dc.html": {
+      "x": 470,
+      "y": 16150,
+      "w": 390,
+      "h": 1300,
+      "expand": "fill",
+      "title": "Herdeiro · Convite (celular)",
+      "is_interactive": true
+    },
+    "Mobile-Pedido.dc.html": {
+      "x": 940,
+      "y": 16150,
+      "w": 390,
+      "h": 1400,
+      "expand": "fill",
+      "title": "Herdeiro · Abrir pedido (celular)",
+      "is_interactive": true
+    },
+    "Mobile-Solicitacao.dc.html": {
+      "x": 1410,
+      "y": 16150,
+      "w": 390,
+      "h": 1200,
+      "expand": "fill",
+      "title": "Herdeiro · Acompanhar (celular)",
+      "is_interactive": true
+    },
+    "Mobile-Acesso.dc.html": {
+      "x": 1880,
+      "y": 16150,
+      "w": 390,
+      "h": 1700,
+      "expand": "fill",
+      "title": "Herdeiro · Acesso liberado (celular)",
+      "is_interactive": true
+    },
+    "Confirmar.dc.html": {
+      "x": 1440,
+      "y": 15230,
+      "w": 1360,
+      "h": 800,
+      "expand": "fill",
+      "title": "Titular · Confirme que é você",
+      "is_interactive": true
+    },
+    "CofreTrancado.dc.html": {
+      "x": 0,
+      "y": 17970,
+      "w": 1360,
+      "h": 800,
+      "expand": "fill",
+      "title": "Titular · Cofre trancado",
+      "is_interactive": true
+    },
+    "AparelhoNovo.dc.html": {
+      "x": 1440,
+      "y": 17970,
+      "w": 1360,
+      "h": 860,
+      "expand": "fill",
+      "title": "Titular · Aprovar aparelho novo",
+      "is_interactive": true
+    },
+    "KitConfirmar.dc.html": {
+      "x": 0,
+      "y": 18950,
+      "w": 1360,
+      "h": 860,
+      "expand": "fill",
+      "title": "Titular · Confirmar kit de recuperação",
+      "is_interactive": true
+    },
+    "HerdeiroProteger.dc.html": {
+      "x": 1440,
+      "y": 18950,
+      "w": 1360,
+      "h": 860,
+      "expand": "fill",
+      "title": "Herdeiro · Proteger a conta",
+      "is_interactive": true
+    },
+    "Mobile-Login.dc.html": {
+      "x": 2350,
+      "y": 16150,
+      "w": 390,
+      "h": 900,
+      "expand": "fill",
+      "title": "Titular · Entrar (celular)",
+      "is_interactive": true
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Codigo2FA.dc.html",
+    "Convite.dc.html",
+    "Configurar.dc.html",
+    "Dashboard.dc.html",
+    "Inventario.dc.html",
+    "NovoAtivo.dc.html",
+    "Estados.dc.html",
+    "Herdeiros.dc.html",
+    "HerdeiroDetalhe.dc.html",
+    "Regras.dc.html",
+    "Seguranca.dc.html",
+    "AbrirPedido.dc.html",
+    "Solicitacao.dc.html",
+    "Contestacao.dc.html",
+    "AcessoLiberado.dc.html",
+    "Validador.dc.html",
+    "Advogado.dc.html",
+    "AvisoObito.dc.html",
+    "Mobile-Painel.dc.html",
+    "Mobile-Convite.dc.html",
+    "Mobile-Pedido.dc.html",
+    "Mobile-Solicitacao.dc.html",
+    "Mobile-Acesso.dc.html",
+    "Confirmar.dc.html",
+    "CofreTrancado.dc.html",
+    "AparelhoNovo.dc.html",
+    "KitConfirmar.dc.html",
+    "HerdeiroProteger.dc.html",
+    "Mobile-Login.dc.html"
+  ],
+  "notes": {
+    "titulo": {
+      "x": 0,
+      "y": -300,
+      "text": "Herança Digital · MVP",
+      "kind": "title1",
+      "maxW": 2800
+    }
+  },
+  "designSystems": []
+}

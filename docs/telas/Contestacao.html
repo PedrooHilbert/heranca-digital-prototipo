@@ -1,44 +1,77 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-name="Contestacao" data-kind="desktop">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contestação · Herança Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../estilo.css">
+<title>Contestação</title>
+<script src="../dc-runtime.js"></script>
+<link rel="stylesheet" href="../transicao.css">
+<script defer src="../transicao.js"></script>
 </head>
 <body>
-  <div class="bar">
-    <a class="back" href="../index.html">← Protótipo</a>
-    <span class="sep">/</span>
-    <div class="brand"><span class="dot">H</span> Contestação</div>
-    <span class="tag">Herdeiro</span>
-  </div>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
 
-  <div class="stage">
-    <div class="shot ">
-      <img src="../assets/Contestacao.png" alt="Contestação">
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="min-height:900px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+  <header style="background:#0B3F3D; padding:14px 56px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px">
+    <div style="display:flex; align-items:center; gap:10px">
+      <img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="height:30px; width:auto">
+      <span style="font-size:16px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span>
+      <span style="margin-left:10px; padding-left:14px; border-left:1px solid rgba(255,255,255,0.2); font-size:14px; color:#A9C7C2">Herdeiro</span>
     </div>
-  </div>
-
-  <div class="flow">
-    <div class="inner">
-      <span class="lbl">Fluxo sugerido</span>
-      <a class="btn primary" href="Solicitacao.html">Voltar</a>
-      <span class="spacer"></span>
-      <a class="btn ghost" href="Solicitacao.html">← Anterior</a>
-      <a class="btn ghost" href="AcessoLiberado.html">Próxima →</a>
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="height:36px; width:36px; border-radius:50%; background:#7FD1C5; color:#0B3F3D; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700">AS</span>
+      <span style="font-size:14px; font-weight:600; color:#FFFFFF">Ana Souza</span>
+      <a href="Main.html" style="font-size:13px; color:#A9C7C2">Sair</a>
     </div>
-  </div>
+  </header>
 
-  <script>
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')location.href='Solicitacao.html';
-    if(e.key==='ArrowRight')location.href='AcessoLiberado.html';
-    if(e.key==='Escape')location.href='../index.html';
-  });
-  </script>
+  <main style="max-width:760px; margin:0 auto; padding:48px 24px 64px; box-sizing:border-box; display:flex; flex-direction:column; gap:24px">
+    <div style="display:flex; flex-direction:column; gap:8px"><a href="Solicitacao.html" style="font-size:14px; font-weight:600">Voltar ao pedido</a><h1 style="margin:0; font-size:30px; font-weight:700">Contestar o pedido</h1><p style="margin:0; font-size:15px; line-height:1.6; color:#44544F">Use esta tela se você discorda da liberação dos ativos de Maria Souza. Prazo: até 12/11, 20 dias restantes.</p></div>
+    <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:32px; box-sizing:border-box; display:flex; flex-direction:column; gap:20px; min-width:0; "><div style="display:flex; flex-direction:column; gap:7px"><label for="mt" style="font-size:14px; font-weight:600">Motivo</label><select id="mt" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"><option>Discordo da partilha</option><option>O documento do inventário parece inválido</option><option>Há um herdeiro que não foi listado</option><option>Outro motivo</option></select></div><div style="display:flex; flex-direction:column; gap:7px"><label for="ex" style="font-size:14px; font-weight:600">Explique o que aconteceu</label><textarea id="ex" rows="5" style="background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:12px 14px; font:inherit; font-size:15px; resize:vertical; box-sizing:border-box; width:100%"></textarea><span style="font-size:13px; line-height:1.5; color:#5E6E69">Seja direto. A equipe lê e encaminha para a análise.</span></div><div style="display:flex; flex-direction:column; gap:7px"><span style="font-size:14px; font-weight:600">Documentos (opcional)</span><button type="button" onClick="{{hd.a0F}}" data-feito="{{hd.a0D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; align-self:flex-start">{{hd.a0}}</button></div><div style="padding:14px 16px; background:#FFF3D6; border-radius:12px; font-size:14px; line-height:1.55; color:#5A3A00">Ao contestar, a liberação fica suspensa para todos os herdeiros até a decisão da Justiça.</div><div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center"><a href="Solicitacao.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; background:#B42318">Enviar contestação</a><a href="Solicitacao.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">Cancelar</a></div></section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":900}}'>
+class Component extends DCLogic {
+  hdAcoes() {
+    const A = [["a0", "Anexar arquivo", "Arquivo anexado"]];
+    const st = this.state || {};
+    const o = {};
+    A.forEach(([k, ini, dep]) => {
+      const alterna = dep.startsWith('<->');
+      const alt = alterna ? dep.slice(3) : dep;
+      const on = !!st['hd_' + k];
+      o[k] = on ? alt : ini;
+      o[k + 'D'] = on ? '1' : '0';
+      o[k + 'F'] = () => this.setState({ ['hd_' + k]: alterna ? !on : true });
+    });
+    return o;
+  }
+  renderVals() {
+    const __hd = this.hdAcoes();
+    return { hd: __hd };
+  }
+}
+</script>
 </body>
 </html>

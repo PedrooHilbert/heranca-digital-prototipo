@@ -1,0 +1,20 @@
+/* Transições entre telas + moldura de celular + navegação flutuante */
+html{background:#EAF1EE}
+body{opacity:0}
+body.hd-in{opacity:1;transition:opacity .30s ease}
+body.hd-out{opacity:0;transition:opacity .16s ease}
+html[data-kind="mobile"]{background:radial-gradient(1200px 600px at 50% -10%,#0E5A57,#0B3F3D)}
+html[data-kind="mobile"] body{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:30px 16px 90px;box-sizing:border-box}
+html[data-kind="mobile"] #dc-root{width:390px;max-width:100%;border:12px solid #0B3F3D;border-radius:44px;overflow:hidden;background:#fff;box-shadow:0 36px 80px rgba(0,0,0,.45);outline:1px solid rgba(255,255,255,.08)}
+#hd-nav{position:fixed;right:18px;bottom:18px;z-index:99999;
+  display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;
+  background:rgba(11,63,61,.92);backdrop-filter:blur(8px);box-shadow:0 12px 34px rgba(11,63,61,.4);
+  font-family:'Montserrat',system-ui,sans-serif}
+#hd-nav a,#hd-nav span{display:flex;align-items:center;justify-content:center;min-width:38px;height:38px;
+  padding:0 12px;border-radius:999px;color:#DCEBE7;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;user-select:none}
+#hd-nav a:hover{background:rgba(127,209,197,.22);color:#fff}
+#hd-nav .lbl{font-size:12px;font-weight:600;color:#7FD1C5;letter-spacing:.04em;cursor:default}
+#hd-nav .home{background:#7FD1C5;color:#0B3F3D}
+#hd-nav .home:hover{background:#9bded4;color:#0B3F3D}
+#hd-nav .off{opacity:.3;cursor:default}
+@media print{#hd-nav{display:none}}

@@ -1,44 +1,113 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-name="Regras" data-kind="desktop">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Regras de liberação · Herança Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../estilo.css">
+<title>Liberação</title>
+<script src="../dc-runtime.js"></script>
+<link rel="stylesheet" href="../transicao.css">
+<script defer src="../transicao.js"></script>
 </head>
 <body>
-  <div class="bar">
-    <a class="back" href="../index.html">← Protótipo</a>
-    <span class="sep">/</span>
-    <div class="brand"><span class="dot">H</span> Regras de liberação</div>
-    <span class="tag">Titular</span>
-  </div>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
 
-  <div class="stage">
-    <div class="shot ">
-      <img src="../assets/Regras.png" alt="Regras de liberação">
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="display:flex; flex-wrap:wrap; min-height:1400px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+
+  <aside style="flex:1 1 240px; max-width:240px; background:linear-gradient(180deg,#0B3F3D,#07302F); padding:28px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; gap:24px; min-width:200px">
+    <div style="display:flex; flex-direction:column; gap:32px">
+      <div style="display:flex; align-items:center; gap:10px; padding:0 8px">
+        <img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="height:30px; width:auto">
+        <span style="font-size:16px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span>
+      </div>
+      <nav aria-label="Principal" style="display:flex; flex-direction:column; gap:2px">
+        <sc-for list="{{nav}}" as="n" hint-placeholder-count="5">
+          <a href="{{n.href}}" style="{{n.style}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px"><path d="{{n.d}}"/></svg>{{n.label}}</a>
+        </sc-for>
+      </nav>
     </div>
-  </div>
-
-  <div class="flow">
-    <div class="inner">
-      <span class="lbl">Fluxo sugerido</span>
-      <a class="btn primary" href="Dashboard.html">Voltar ao painel</a>
-      <span class="spacer"></span>
-      <a class="btn ghost" href="HerdeiroDetalhe.html">← Anterior</a>
-      <a class="btn ghost" href="AbrirPedido.html">Próxima →</a>
+<!--shield--><div style="display:flex; flex-direction:column; gap:14px"><div style="display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background:rgba(255,255,255,0.07)"><span style="color:#7FD1C5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 26px;"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4"/></svg></span><span style="font-size:12px; line-height:1.45; color:#CFE3DF">Sua segurança é a nossa prioridade.</span></div>
+    <div style="display:flex; align-items:center; gap:12px; padding:14px 8px 0; border-top:1px solid rgba(255,255,255,0.12)">
+      <span style="flex:0 0 38px; height:38px; border-radius:50%; background:#7FD1C5; color:#0B3F3D; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">MS</span>
+      <div style="display:flex; flex-direction:column; gap:1px; min-width:0">
+        <span style="font-size:14px; font-weight:600; color:#FFFFFF">Maria Souza</span>
+        <a href="Main.html" style="font-size:13px; color:#A9C7C2">Sair</a>
+      </div>
     </div>
-  </div>
+    </div>
+  </aside>
 
-  <script>
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')location.href='HerdeiroDetalhe.html';
-    if(e.key==='ArrowRight')location.href='AbrirPedido.html';
-    if(e.key==='Escape')location.href='../index.html';
-  });
-  </script>
+  <main style="flex:999 1 560px; min-width:0; padding:48px 56px; box-sizing:border-box">
+    <div style="max-width:1120px; display:flex; flex-direction:column; gap:28px">
+<!--topbar--><div style="display:flex; align-items:center; justify-content:space-between; gap:16px"><div style="flex:1 1 240px; max-width:380px; position:relative"><span style="position:absolute; left:14px; top:0; bottom:0; display:flex; align-items:center; color:#5E6E69"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-5-5"/></svg></span><input aria-label="Buscar" type="search" placeholder="Buscar ativos" style="height:42px; width:100%; box-sizing:border-box; background:#FFFFFF; border:1px solid #DCE3E0; border-radius:12px; padding:0 14px 0 42px; font:inherit; font-size:14px"></div><div style="display:flex; align-items:center; gap:14px"><span style="position:relative; width:42px; height:42px; border-radius:12px; background:#FFFFFF; border:1px solid #DCE3E0; color:#44544F; display:flex; align-items:center; justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;"><path d="M6 9a6 6 0 0112 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 004 0"/></svg><span style="position:absolute; top:9px; right:10px; width:8px; height:8px; border-radius:50%; background:#B45309; border:2px solid #FFFFFF; box-sizing:content-box"></span></span><span style="display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600"><span style="width:36px; height:36px; border-radius:50%; background:#0E5A57; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:13px">MS</span>Maria Souza</span></div></div>
+      <header style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px">
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <h1 style="margin:0; font-size:30px; font-weight:700">Liberação</h1>
+          <p style="margin:0; font-size:15px; line-height:1.55; color:#44544F; max-width:640px">Defina como seus ativos são liberados depois da sua partida. O que é exigido por lei não pode ser desligado.</p>
+        </div>
+      </header>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:28px 32px; display:flex; gap:22px; align-items:flex-start; box-sizing:border-box">
+        <span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#5E6E69; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">1</span>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:16px"><div style="display:flex; flex-direction:column; gap:4px"><h2 style="margin:0; font-size:18px; font-weight:700">Documentos exigidos</h2><p style="margin:0; font-size:14px; line-height:1.55; color:#44544F">Estes três itens são sempre exigidos.</p></div><div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:#F3F6F4; border-radius:12px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"/></svg></span><div style="flex:1; display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Certidão de óbito</span><span style="font-size:13px; line-height:1.45; color:#44544F">Prova do falecimento.</span></div><span style="font-size:13px; font-weight:600; color:#44544F">Obrigatório</span></div><div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:#F3F6F4; border-radius:12px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"/></svg></span><div style="flex:1; display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Documento do inventário</span><span style="font-size:13px; line-height:1.45; color:#44544F">Alvará ou formal de partilha (inventário na Justiça) ou escritura de inventário (em cartório).</span></div><span style="font-size:13px; font-weight:600; color:#44544F">Obrigatório</span></div><div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:#F3F6F4; border-radius:12px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"/></svg></span><div style="flex:1; display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Validação pela equipe</span><span style="font-size:13px; line-height:1.45; color:#44544F">Conferimos documentos e, no caso do advogado, o registro na OAB.</span></div><span style="font-size:13px; font-weight:600; color:#44544F">Obrigatório</span></div></div>
+      </section>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:28px 32px; display:flex; gap:22px; align-items:flex-start; box-sizing:border-box">
+        <span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#5E6E69; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">2</span>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:16px"><div style="display:flex; flex-direction:column; gap:4px"><h2 style="margin:0; font-size:18px; font-weight:700">Carência: prazo para contestação</h2><p style="margin:0; font-size:14px; line-height:1.55; color:#44544F">Depois da validação, todos são avisados e esperam este prazo antes da liberação.</p></div><div style="display:flex; flex-wrap:wrap; gap:10px"><sc-for list="{{prazos}}" as="p" hint-placeholder-count="4"><button onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="{{p.style}}">{{p.label}}</button></sc-for></div><p style="margin:0; font-size:13px; line-height:1.55; color:#5E6E69">Quem discordar pode contestar. A liberação fica suspensa até a decisão da Justiça.</p></div>
+      </section>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:28px 32px; display:flex; gap:22px; align-items:flex-start; box-sizing:border-box">
+        <span style="flex:0 0 36px; width:36px; height:36px; border-radius:50%; background:#E2F0ED; color:#5E6E69; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">3</span>
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:16px"><div style="display:flex; flex-direction:column; gap:4px"><h2 style="margin:0; font-size:18px; font-weight:700">Quem é avisado quando um pedido é aberto</h2><p style="margin:0; font-size:14px; line-height:1.55; color:#44544F"></p></div><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" checked disabled style="width:20px; height:20px; margin:0; accent-color:#0E5A57">Todos os herdeiros cadastrados <span style="font-size:13px; color:#5E6E69">(sempre)</span></label><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" checked="{{advOn}}" onChange="{{toggleAdv}}" style="width:20px; height:20px; margin:0; accent-color:#0E5A57">Meu advogado ou testamenteiro</label></div>
+      </section>
+      <section style="position:relative; overflow:hidden; border-radius:20px; padding:28px 32px; background:linear-gradient(135deg,#0B3F3D 0%,#0E5A57 100%); color:#FFFFFF; box-shadow:0 18px 40px rgba(11,63,61,0.22);">
+        <img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="position:absolute; right:-40px; bottom:-50px; width:300px; height:auto; opacity:0.09; pointer-events:none">
+        <h2 style="position:relative; margin:0 0 10px; font-size:17px; font-weight:700; color:#7FD1C5">Como vai funcionar</h2>
+        <p style="position:relative; margin:0; font-size:16px; line-height:1.7; max-width:680px">{{resumo}}</p>
+      </section>
+      <div style="display:flex; align-items:center; gap:24px"><a href="Dashboard.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">Salvar regras</a><a href="Dashboard.html" style="font-size:14px; font-weight:600">Voltar ao início</a></div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { prazo: 30, adv: true };
+  }
+  renderVals() {
+    const I = {"Início": "M4 11l8-7 8 7v9a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-9z", "Ativos": "M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8", "Herdeiros": "M9 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 010 7M18.5 14.4c1.9.8 3 2.7 3 5.6", "Liberação": "M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4", "Segurança": "M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"};
+    const base = 'display:flex; align-items:center; min-height:46px; gap:12px; padding:0 14px; border-radius:10px; font-size:15px; text-decoration:none; ';
+    const on = base + 'background:#14706B; color:#FFFFFF; font-weight:700;';
+    const off = base + 'color:#CFE3DF; font-weight:500;';
+    const items = [["Início", "Dashboard.html"], ["Ativos", "Inventario.html"], ["Herdeiros", "Herdeiros.html"], ["Liberação", "Regras.html"], ["Segurança", "Seguranca.html"]];
+    const s = this.state;
+    const nb = 'display:flex; align-items:center; min-height:44px; padding:0 20px; border-radius:10px; font:inherit; font-size:14px; cursor:pointer; ';
+    const chipOn = nb + 'background:#E2F0ED; border:2px solid #0E5A57; color:#0B3F3D; font-weight:700;';
+    const chipOff = nb + 'background:#FFFFFF; border:1px solid #7C8D88; color:#13211F; font-weight:500;';
+    const prazos = [15, 30, 60, 90].map(d => ({ label: d + ' dias', on: s.prazo === d, style: s.prazo === d ? chipOn : chipOff, pick: () => this.setState({ prazo: d }) }));
+    const resumo = 'Um herdeiro ou o advogado abre o pedido com a certidão de óbito e o documento do inventário. A equipe valida os documentos. Todos os herdeiros' + (s.adv ? ' e o seu advogado' : '') + ' são avisados e começa a carência de ' + s.prazo + ' dias, em que qualquer um pode contestar. Sem contestação, cada herdeiro recebe o que você destinou a ele. Ativos patrimoniais seguem a partilha do inventário.';
+    return { nav: items.map(([label, href]) => ({ label, href, d: I[label], style: label === 'Liberação' ? on : off })), prazos, advOn: s.adv, toggleAdv: () => this.setState({ adv: !s.adv }), resumo };
+  }
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Herdeiros</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
+
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="display:flex; flex-wrap:wrap; min-height:1500px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+
+  <aside style="flex:1 1 240px; max-width:240px; background:linear-gradient(180deg,#0B3F3D,#07302F); padding:28px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; gap:24px; min-width:200px">
+    <div style="display:flex; flex-direction:column; gap:32px">
+      <div style="display:flex; align-items:center; gap:10px; padding:0 8px">
+        <img src="/_blob/b8637202c7a49cb5856b6a0cf382b5b7" alt="" style="height:30px; width:auto">
+        <span style="font-size:16px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span>
+      </div>
+      <nav aria-label="Principal" style="display:flex; flex-direction:column; gap:2px">
+        <sc-for list="{{nav}}" as="n" hint-placeholder-count="5">
+          <a href="{{n.href}}" style="{{n.style}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px"><path d="{{n.d}}"/></svg>{{n.label}}</a>
+        </sc-for>
+      </nav>
+    </div>
+<!--shield--><div style="display:flex; flex-direction:column; gap:14px"><div style="display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background:rgba(255,255,255,0.07)"><span style="color:#7FD1C5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 26px;"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4"/></svg></span><span style="font-size:12px; line-height:1.45; color:#CFE3DF">Sua segurança é a nossa prioridade.</span></div>
+    <div style="display:flex; align-items:center; gap:12px; padding:14px 8px 0; border-top:1px solid rgba(255,255,255,0.12)">
+      <span style="flex:0 0 38px; height:38px; border-radius:50%; background:#7FD1C5; color:#0B3F3D; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700">MS</span>
+      <div style="display:flex; flex-direction:column; gap:1px; min-width:0">
+        <span style="font-size:14px; font-weight:600; color:#FFFFFF">Maria Souza</span>
+        <a href="Main.dc.html" style="font-size:13px; color:#A9C7C2">Sair</a>
+      </div>
+    </div>
+    </div>
+  </aside>
+
+  <main style="flex:999 1 560px; min-width:0; padding:48px 56px; box-sizing:border-box">
+    <div style="max-width:1120px; display:flex; flex-direction:column; gap:28px">
+<!--topbar--><div style="display:flex; align-items:center; justify-content:space-between; gap:16px"><div style="flex:1 1 240px; max-width:380px; position:relative"><span style="position:absolute; left:14px; top:0; bottom:0; display:flex; align-items:center; color:#5E6E69"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 18px;"><path d="M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-5-5"/></svg></span><input aria-label="Buscar" type="search" placeholder="Buscar ativos" style="height:42px; width:100%; box-sizing:border-box; background:#FFFFFF; border:1px solid #DCE3E0; border-radius:12px; padding:0 14px 0 42px; font:inherit; font-size:14px"></div><div style="display:flex; align-items:center; gap:14px"><span style="position:relative; width:42px; height:42px; border-radius:12px; background:#FFFFFF; border:1px solid #DCE3E0; color:#44544F; display:flex; align-items:center; justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;"><path d="M6 9a6 6 0 0112 0c0 6 2 7 2 7H4s2-1 2-7zM10 20a2 2 0 004 0"/></svg><span style="position:absolute; top:9px; right:10px; width:8px; height:8px; border-radius:50%; background:#B45309; border:2px solid #FFFFFF; box-sizing:content-box"></span></span><span style="display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600"><span style="width:36px; height:36px; border-radius:50%; background:#0E5A57; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:13px">MS</span>Maria Souza</span></div></div>
+      <header style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px">
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <h1 style="margin:0; font-size:30px; font-weight:700">Herdeiros</h1>
+          <p style="margin:0; font-size:15px; line-height:1.55; color:#44544F; max-width:640px">Pessoas que podem receber seus ativos. Convidar é opcional: o direito do herdeiro vem do inventário, não do aceite no app.</p>
+        </div>
+      </header>
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:16px 20px; background:#E2F0ED; border-radius:14px; font-size:14px; line-height:1.55; color:#13211F"><span style="color:#0E5A57"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4"/></svg></span><span><strong>Trocar ou remover um herdeiro vale na hora.</strong> Você recebe um alerta no e-mail e no app, com o botão "Não foi você? Desfazer", e a mudança entra no histórico de Segurança.</span></div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px"><div style="background:#E2F0ED; border-radius:14px; padding:16px 20px; display:flex; flex-direction:column; gap:2px"><span style="font-size:13px; font-weight:500; color:#44544F">Herdeiros</span><span style="font-size:28px; line-height:1.15; font-weight:700; color:#0E5A57">3</span></div><div style="background:#E2F0ED; border-radius:14px; padding:16px 20px; display:flex; flex-direction:column; gap:2px"><span style="font-size:13px; font-weight:500; color:#44544F">Já avisados</span><span style="font-size:28px; line-height:1.15; font-weight:700; color:#0E5A57">2</span></div><div style="background:#FFF3D6; border-radius:14px; padding:16px 20px; display:flex; flex-direction:column; gap:2px"><span style="font-size:13px; font-weight:500; color:#44544F">Ainda não avisados</span><span style="font-size:28px; line-height:1.15; font-weight:700; color:#B45309">1</span></div></div>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); overflow:hidden">
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; padding:20px 24px; border-top:1px solid #E6ECE9"><span style="flex:0 0 44px; height:44px; border-radius:50%; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">LS</span><div style="flex:1 1 200px; display:flex; flex-direction:column; gap:3px; min-width:0"><a href="HerdeiroDetalhe.dc.html" style="font-size:16px; font-weight:600; color:#13211F; text-decoration:none">Lucas Souza</a><span style="font-size:14px; color:#44544F">Filho · lucas@email.com</span></div><span style="flex:0 1 150px; font-size:14px; color:#44544F">3 ativos diretos</span><span style="flex:0 1 200px"><span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#15803D"><span style="width:8px; height:8px; border-radius:50%; background:#15803D; flex:0 0 8px"></span>Avisado, já aceitou</span></span><a href="HerdeiroDetalhe.dc.html" style="flex:0 0 100px; font-size:14px; font-weight:600">Ver detalhes</a></div>
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; padding:20px 24px; border-top:1px solid #E6ECE9"><span style="flex:0 0 44px; height:44px; border-radius:50%; background:#EAF0EE; color:#0E5A57; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">AS</span><div style="flex:1 1 200px; display:flex; flex-direction:column; gap:3px; min-width:0"><a href="HerdeiroDetalhe.dc.html" style="font-size:16px; font-weight:600; color:#13211F; text-decoration:none">Ana Souza</a><span style="font-size:14px; color:#44544F">Filha · ana@email.com</span></div><span style="flex:0 1 150px; font-size:14px; color:#44544F">2 ativos diretos</span><span style="flex:0 1 200px"><span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#B45309"><span style="width:8px; height:8px; border-radius:50%; background:#B45309; flex:0 0 8px"></span>Avisada, sem resposta</span></span><a href="HerdeiroDetalhe.dc.html" style="flex:0 0 100px; font-size:14px; font-weight:600">Ver detalhes</a></div>
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; padding:20px 24px; border-top:1px solid #E6ECE9"><span style="flex:0 0 44px; height:44px; border-radius:50%; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700">CS</span><div style="flex:1 1 200px; display:flex; flex-direction:column; gap:3px; min-width:0"><a href="HerdeiroDetalhe.dc.html" style="font-size:16px; font-weight:600; color:#13211F; text-decoration:none">Carlos Souza</a><span style="font-size:14px; color:#44544F">Irmão · carlos@email.com</span></div><span style="flex:0 1 150px; font-size:14px; color:#44544F">1 encargo</span><span style="flex:0 1 200px"><span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#5E6E69"><span style="width:8px; height:8px; border-radius:50%; background:#5E6E69; flex:0 0 8px"></span>Ainda não avisado</span></span><a href="HerdeiroDetalhe.dc.html" style="flex:0 0 100px; font-size:14px; font-weight:600">Avisar agora</a></div>
+      </section>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(380px, 1fr)); gap:20px; align-items:start"><section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px; min-width:0; "><h2 style="margin:0; font-size:18px; font-weight:700">Adicionar herdeiro</h2><div style="display:flex; flex-direction:column; gap:7px"><label for="h-nome" style="font-size:14px; font-weight:600">Nome completo</label><input id="h-nome" type="text" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><div style="display:flex; flex-direction:column; gap:7px"><label for="h-mail" style="font-size:14px; font-weight:600">E-mail</label><input id="h-mail" type="email" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><div style="display:flex; flex-direction:column; gap:7px"><label for="h-par" style="font-size:14px; font-weight:600">Parentesco</label><select id="h-par" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"><option>Filho(a)</option><option>Cônjuge</option><option>Irmão(ã)</option><option>Pai ou mãe</option><option>Outro</option></select></div><div style="display:flex; flex-direction:column; gap:10px"><span style="font-size:14px; font-weight:600">Avisar essa pessoa?</span><label style="display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border:2px solid #0E5A57; background:#E2F0ED; border-radius:12px; cursor:pointer"><input type="radio" name="av" checked style="width:20px; height:20px; margin:1px 0 0; accent-color:#0E5A57"><span style="display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Só guardar por enquanto</span><span style="font-size:13px; line-height:1.45; color:#44544F">Ela não recebe nada e não sabe que foi indicada.</span></span></label><label style="display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border:1px solid #DCE3E0; border-radius:12px; cursor:pointer"><input type="radio" name="av"  style="width:20px; height:20px; margin:1px 0 0; accent-color:#0E5A57"><span style="display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Avisar agora por e-mail</span><span style="font-size:13px; line-height:1.45; color:#44544F">Ela recebe um convite e pode criar uma conta.</span></span></label></div><a href="HerdeiroDetalhe.dc.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; align-self:flex-start">Adicionar herdeiro</a></section><section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:16px; min-width:0; "><h2 style="margin:0; font-size:18px; font-weight:700">Advogado ou testamenteiro</h2><p style="margin:0; font-size:14px; line-height:1.55; color:#44544F">Quem conduz o inventário pode abrir o pedido de liberação e receber o relatório de ativos, sem senhas.</p><div style="display:flex; flex-direction:column; gap:7px"><label for="a-n" style="font-size:14px; font-weight:600">Nome</label><input id="a-n" type="text" value="Dr. Paulo Nogueira" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><div style="display:flex; flex-direction:column; gap:7px"><label for="a-o" style="font-size:14px; font-weight:600">OAB</label><input id="a-o" type="text" value="OAB/SP 123.456" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><div style="display:flex; flex-direction:column; gap:7px"><label for="a-m" style="font-size:14px; font-weight:600">E-mail</label><input id="a-m" type="email" value="paulo@escritorio.com.br" style="height:46px; background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:0 14px; font:inherit; font-size:15px; box-sizing:border-box; width:100%"></div><a href="HerdeiroDetalhe.dc.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; align-self:flex-start">Salvar</a></section></div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const I = {"Início": "M4 11l8-7 8 7v9a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-9z", "Ativos": "M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8", "Herdeiros": "M9 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 010 7M18.5 14.4c1.9.8 3 2.7 3 5.6", "Liberação": "M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4", "Segurança": "M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"};
+    const base = 'display:flex; align-items:center; min-height:46px; gap:12px; padding:0 14px; border-radius:10px; font-size:15px; text-decoration:none; ';
+    const on = base + 'background:#14706B; color:#FFFFFF; font-weight:700;';
+    const off = base + 'color:#CFE3DF; font-weight:500;';
+    const items = [["Início", "Dashboard.dc.html"], ["Ativos", "Inventario.dc.html"], ["Herdeiros", "Herdeiros.dc.html"], ["Liberação", "Regras.dc.html"], ["Segurança", "Seguranca.dc.html"]];
+
+    return { nav: items.map(([label, href]) => ({ label, href, d: I[label], style: label === 'Herdeiros' ? on : off })) };
+  }
+}
+</script>
+</body>
+</html>

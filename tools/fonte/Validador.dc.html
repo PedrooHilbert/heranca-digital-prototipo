@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Painel do validador</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
+
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="min-height:1300px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+  <header style="background:#0B3F3D; padding:14px 56px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px">
+    <div style="display:flex; align-items:center; gap:10px">
+      <img src="/_blob/b8637202c7a49cb5856b6a0cf382b5b7" alt="" style="height:30px; width:auto">
+      <span style="font-size:16px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span>
+      <span style="margin-left:10px; padding-left:14px; border-left:1px solid rgba(255,255,255,0.2); font-size:14px; color:#A9C7C2">Validação</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="height:36px; width:36px; border-radius:50%; background:#7FD1C5; color:#0B3F3D; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700">HP</span>
+      <span style="font-size:14px; font-weight:600; color:#FFFFFF">Dra. Helena Prado</span>
+      <a href="Main.dc.html" style="font-size:13px; color:#A9C7C2">Sair</a>
+    </div>
+  </header>
+
+  <main style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:900px">
+    <aside style="flex:0 1 360px; min-width:300px; background:#FFFFFF; border-right:1px solid #DCE3E0; box-sizing:border-box; display:flex; flex-direction:column">
+      <div style="padding:28px 20px 18px; display:flex; flex-direction:column; gap:12px"><h1 style="margin:0; font-size:22px; font-weight:700">Pedidos</h1><div style="display:flex; gap:8px; flex-wrap:wrap"><sc-for list="{{filtros}}" as="f" hint-placeholder-count="4"><button type="button" onClick="{{f.pick}}" aria-pressed="{{f.ativo}}" style="{{f.estilo}}">{{f.rotulo}}</button></sc-for></div></div>
+      <sc-for list="{{casos}}" as="c" hint-placeholder-count="4">
+        <button type="button" onClick="{{c.pick}}" aria-pressed="{{c.ativo}}" style="{{c.estilo}}"><span style="display:flex; justify-content:space-between; gap:8px; font-size:15px; font-weight:600"><span>{{c.nome}}</span><span style="font-size:12px; font-weight:500; color:#5E6E69">{{c.quando}}</span></span><span style="font-size:13px; color:#44544F">Ativos de {{c.titular}}</span><span style="margin-top:2px"><span style="{{c.corStatus}}"><span style="{{c.ponto}}"></span>{{c.status}}</span></span></button>
+      </sc-for>
+    </aside>
+    <section style="flex:999 1 560px; min-width:0; padding:40px 48px; box-sizing:border-box; display:flex; flex-direction:column; gap:24px">
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:12px"><div style="display:flex; flex-direction:column; gap:6px"><h2 style="margin:0; font-size:28px; font-weight:700">Pedido de {{sel.nome}}</h2><span style="font-size:15px; color:#44544F">{{sel.sub}}</span></div><span style="{{sel.corStatus}}"><span style="{{sel.ponto}}"></span>{{sel.status}}</span></div>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:14px; min-width:0; "><h3 style="margin:0; font-size:18px; font-weight:700">Documentos enviados</h3><div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border:1px solid #DCE3E0; border-radius:12px"><div style="display:flex; align-items:center; gap:14px"><span style="flex:0 0 40px; height:48px; border-radius:6px; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5zM14 3v5h5"/></svg></span><div style="display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Certidão de óbito</span><span style="font-size:13px; color:#5E6E69">certidao_obito.pdf · 1,2 MB</span></div></div><a href="Advogado.dc.html" style="font-size:14px; font-weight:600">Abrir</a></div><div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border:1px solid #DCE3E0; border-radius:12px"><div style="display:flex; align-items:center; gap:14px"><span style="flex:0 0 40px; height:48px; border-radius:6px; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5zM14 3v5h5"/></svg></span><div style="display:flex; flex-direction:column; gap:2px"><span style="font-size:15px; font-weight:600">Documento com foto de {{sel.primeiro}}</span><span style="font-size:13px; color:#5E6E69">rg_lucas.jpg · 2,4 MB</span></div></div><a href="Advogado.dc.html" style="font-size:14px; font-weight:600">Abrir</a></div><div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border:1.5px dashed #7C8D88; border-radius:12px; background:#F8FAF9"><span style="font-size:15px; font-weight:600">Documento do inventário</span><span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#B45309"><span style="width:8px; height:8px; border-radius:50%; background:#B45309; flex:0 0 8px"></span>Não enviado</span></div></section>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:8px; min-width:0; "><h3 style="margin:0 0 6px; font-size:18px; font-weight:700">Conferência</h3><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" checked style="width:20px; height:20px; margin:0; accent-color:#0E5A57">A certidão de óbito confere com o CPF de {{sel.titular}}</label><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" checked style="width:20px; height:20px; margin:0; accent-color:#0E5A57">O documento de {{sel.primeiro}} está legível e válido</label><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox" checked style="width:20px; height:20px; margin:0; accent-color:#0E5A57">O parentesco declarado{{sel.parentesco}} é compatível</label><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox"  style="width:20px; height:20px; margin:0; accent-color:#0E5A57">O documento do inventário confere (número do processo ou da escritura)</label><label style="display:flex; align-items:center; gap:12px; min-height:44px; font-size:15px"><input type="checkbox"  style="width:20px; height:20px; margin:0; accent-color:#0E5A57">OAB do advogado ativa (se houver)</label></section>
+      <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:26px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:14px; min-width:0; "><h3 style="margin:0; font-size:18px; font-weight:700">Decisão</h3><div style="display:flex; flex-direction:column; gap:7px"><label for="msg" style="font-size:14px; font-weight:600">Mensagem para o herdeiro</label><textarea id="msg" rows="3" style="background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:12px 14px; font:inherit; font-size:15px; resize:vertical; box-sizing:border-box; width:100%"></textarea><span style="font-size:13px; line-height:1.5; color:#5E6E69">Ele recebe este texto na tela do pedido. Diga o que falta e como enviar.</span></div><div style="display:flex; flex-direction:column; gap:7px"><label for="rec" style="font-size:14px; font-weight:600">Motivo da recusa (obrigatório para recusar)</label><textarea id="rec" rows="2" style="background:#FFFFFF; color:#13211F; border:1px solid #7C8D88; border-radius:10px; padding:12px 14px; font:inherit; font-size:15px; resize:vertical; box-sizing:border-box; width:100%"></textarea></div><div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px"><button type="button" onClick="{{hd.a0F}}" data-feito="{{hd.a0D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">{{hd.a0}}</button><button type="button" onClick="{{hd.a1F}}" data-feito="{{hd.a1D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 22px; background:#FFFFFF; color:#0E5A57; border:1px solid #0E5A57; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none">{{hd.a1}}</button><button type="button" onClick="{{hd.a2F}}" data-feito="{{hd.a2D}}" style="background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer; text-align:inherit; font-size:14px; font-weight:600; color:#B42318">{{hd.a2}}</button></div><p style="margin:0; font-size:13px; line-height:1.55; color:#5E6E69">A liberação precisa de duas aprovações: a sua e a de outro validador. Depois da segunda, começa a carência de 30 dias e todos os herdeiros são avisados. Validadores nunca veem o conteúdo do cofre.</p></section>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1300}}'>
+class Component extends DCLogic {
+  validador() {
+    const CASOS = [
+      { id: 'lucas', nome: 'Lucas Souza', primeiro: 'Lucas', titular: 'Maria Souza', quando: 'há 2 dias', status: 'Em análise', cor: '#B45309', grupo: 'analise', sub: 'Ativos de Maria Souza · aberto em 02/10 · carência de 30 dias', parentesco: ' (filho)' },
+      { id: 'paula', nome: 'Paula Mendes', primeiro: 'Paula', titular: 'Roberto Mendes', quando: 'há 4 dias', status: 'Aguardando complemento', cor: '#5E6E69', grupo: 'complemento', sub: 'Ativos de Roberto Mendes · aguardando complemento', parentesco: '' },
+      { id: 'rafael', nome: 'Rafael Lima', primeiro: 'Rafael', titular: 'Clara Lima', quando: 'hoje', status: 'Novo', cor: '#0E5A57', grupo: 'novo', sub: 'Ativos de Clara Lima · aberto hoje', parentesco: '' },
+      { id: 'ana', nome: 'Ana Souza', primeiro: 'Ana', titular: 'Maria Souza', quando: 'hoje', status: 'Contestação', cor: '#B42318', grupo: 'contestacao', sub: 'Ativos de Maria Souza · contestação aberta hoje', parentesco: '' },
+    ];
+    const st = this.state || {};
+    const selId = st.vSel || 'lucas';
+    const filtro = st.vFiltro || 'todos';
+    const corStatus = (c) => 'display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:' + c + ';';
+    const ponto = (c) => 'width:8px; height:8px; border-radius:50%; background:' + c + '; flex:0 0 8px;';
+    const casos = CASOS.filter((c) => filtro === 'todos' || c.grupo === filtro).map((c) => ({
+      ...c,
+      ativo: c.id === selId ? 'true' : 'false',
+      corStatus: corStatus(c.cor),
+      ponto: ponto(c.cor),
+      estilo: 'display:flex; flex-direction:column; gap:4px; width:100%; padding:16px 20px; border:0; border-top:1px solid #E6ECE9; text-align:left; font:inherit; cursor:pointer; color:#13211F; box-shadow:' + (c.id === selId ? 'inset 4px 0 0 #0E5A57' : 'none') + '; background:' + (c.id === selId ? '#E2F0ED' : '#FFFFFF') + ';',
+      pick: () => this.setState({ vSel: c.id }),
+    }));
+    const sel0 = CASOS.find((c) => c.id === selId) || CASOS[0];
+    const sel = { ...sel0, corStatus: corStatus(sel0.cor), ponto: ponto(sel0.cor) };
+    const F = [['todos', 'Todos'], ['novo', 'Novos'], ['analise', 'Em análise'], ['contestacao', 'Contestações']];
+    const filtros = F.map(([id, nome]) => {
+      const n = id === 'todos' ? CASOS.length : CASOS.filter((c) => c.grupo === id).length;
+      const on = id === filtro;
+      return {
+        rotulo: nome + ' (' + n + ')',
+        ativo: on ? 'true' : 'false',
+        estilo: 'min-height:36px; padding:8px 14px; border-radius:999px; font:inherit; font-size:13px; cursor:pointer; ' + (on ? 'background:#0E5A57; color:#FFFFFF; font-weight:600; border:1px solid #0E5A57;' : 'background:#FFFFFF; border:1px solid #DCE3E0; color:#44544F; font-weight:500;'),
+        pick: () => {
+          const prim = CASOS.find((c) => id === 'todos' || c.grupo === id);
+          this.setState({ vFiltro: id, vSel: prim ? prim.id : selId });
+        },
+      };
+    });
+    return { casos, sel, filtros };
+  }
+  hdAcoes() {
+    const A = [["a0", "Aprovar (1 de 2)", "Aprovado (1 de 2)"],["a1", "Pedir complemento", "Complemento pedido"],["a2", "Recusar", "Recusado"]];
+    const st = this.state || {};
+    const o = {};
+    A.forEach(([k, ini, dep]) => {
+      const alterna = dep.startsWith('<->');
+      const alt = alterna ? dep.slice(3) : dep;
+      const on = !!st['hd_' + k];
+      o[k] = on ? alt : ini;
+      o[k + 'D'] = on ? '1' : '0';
+      o[k + 'F'] = () => this.setState({ ['hd_' + k]: alterna ? !on : true });
+    });
+    return o;
+  }
+  renderVals() {
+    const __hd = this.hdAcoes();
+    return { hd: __hd, ...this.validador() };
+  }
+}
+</script>
+</body>
+</html>

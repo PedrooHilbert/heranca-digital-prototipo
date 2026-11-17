@@ -1,46 +1,61 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-name="Mobile-Painel" data-kind="mobile">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Celular · Painel · Herança Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../estilo.css">
+<title>Início no celular</title>
+<script src="../dc-runtime.js"></script>
+<link rel="stylesheet" href="../transicao.css">
+<script defer src="../transicao.js"></script>
 </head>
 <body>
-  <div class="bar">
-    <a class="back" href="../index.html">← Protótipo</a>
-    <span class="sep">/</span>
-    <div class="brand"><span class="dot">H</span> Celular · Painel</div>
-    <span class="tag">Celular</span>
-  </div>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
 
-  <div class="stage">
-    <div class="shot phone">
-      <img src="../assets/Mobile-Painel.png" alt="Celular · Painel">
-    </div>
-  </div>
-
-  <div class="flow">
-    <div class="inner">
-      <span class="lbl">Fluxo sugerido</span>
-      <a class="btn primary" href="Mobile-Pedido.html">Pedido</a>
-      <a class="btn " href="Mobile-Convite.html">Convite</a>
-      <a class="btn " href="Mobile-Acesso.html">Acesso</a>
-      <span class="spacer"></span>
-      <a class="btn ghost" href="KitConfirmar.html">← Anterior</a>
-      <a class="btn ghost" href="Mobile-Convite.html">Próxima →</a>
-    </div>
-  </div>
-
-  <script>
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')location.href='KitConfirmar.html';
-    if(e.key==='ArrowRight')location.href='Mobile-Convite.html';
-    if(e.key==='Escape')location.href='../index.html';
-  });
-  </script>
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="min-height:1500px; display:flex; flex-direction:column; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+  <header style="background:#0B3F3D; padding:12px 16px; display:flex; justify-content:space-between; align-items:center">
+    <div style="display:flex; align-items:center; gap:8px"><img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="height:26px; width:auto"><span style="font-size:15px; font-weight:700; color:#FFFFFF">Herança <span style="color:#7FD1C5">Digital</span></span></div>
+    <span style="font-size:13px; color:#A9C7C2">Maria</span>
+  </header>
+  <main style="flex:1; padding:20px 16px 32px; display:flex; flex-direction:column; gap:16px">
+    <section style="position:relative; overflow:hidden; border-radius:20px; padding:24px 20px; background:linear-gradient(135deg,#0B3F3D 0%,#0E5A57 100%); color:#FFFFFF; box-shadow:0 14px 32px rgba(11,63,61,0.22); display:flex; flex-direction:column; gap:14px"><img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="position:absolute; right:-40px; bottom:-40px; width:200px; height:auto; opacity:0.09; pointer-events:none">
+      <div style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:12px"><div style="display:flex; flex-direction:column; gap:6px"><h1 style="margin:0; font-size:26px; font-weight:700">Olá, Maria</h1><p style="margin:0; font-size:14px; line-height:1.5; color:#CFE3DF">Faltam 3 itens para completar o plano.</p></div>
+        <div style="position:relative; width:76px; height:76px; flex:0 0 76px"><svg width="76" height="76" viewBox="0 0 76 76" aria-hidden="true" style="transform:rotate(-90deg)"><circle cx="38" cy="38" r="32" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="7"/><circle cx="38" cy="38" r="32" fill="none" stroke="#7FD1C5" stroke-width="7" stroke-linecap="round" stroke-dasharray="100 201"/></svg><span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700">3/6</span></div></div>
+      <a href="Inventario.html" style="position:relative; display:flex; align-items:center; justify-content:center; height:50px; background:#FFFFFF; color:#0B3F3D; border-radius:12px; font-size:15px; font-weight:700; text-decoration:none">Resolver pendências</a>
+    </section>
+    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px"><div style="background:#E2F0ED; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column"><span style="font-size:12px; font-weight:500; color:#44544F">Ativos</span><span style="font-size:24px; font-weight:700; color:#0E5A57">12</span></div><div style="background:#FFF3D6; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column"><span style="font-size:12px; font-weight:500; color:#44544F">Sem destino</span><span style="font-size:24px; font-weight:700; color:#B45309">2</span></div></div>
+    <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:20px; box-sizing:border-box; display:flex; flex-direction:column; gap:4px"><h2 style="margin:0; font-size:16px; font-weight:700">O que falta</h2><div><a href="Inventario.html" style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid #E6ECE9; text-decoration:none; color:#13211F; min-height:44px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:11px; background:#FFF3D6; color:#B45309; display:flex; align-items:center; justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;"><path d="M12 3l10 18H2L12 3zM12 10v4M12 17.5h0"/></svg></span><span style="flex:1; display:flex; flex-direction:column; gap:1px"><span style="font-size:14px; font-weight:600">2 ativos sem destino</span><span style="font-size:12px; line-height:1.4; color:#44544F">X (Twitter) e iCloud.</span></span></a><a href="Inventario.html" style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid #E6ECE9; text-decoration:none; color:#13211F; min-height:44px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:11px; background:#FFF3D6; color:#B45309; display:flex; align-items:center; justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;"><path d="M12 3l10 18H2L12 3zM12 10v4M12 17.5h0"/></svg></span><span style="flex:1; display:flex; flex-direction:column; gap:1px"><span style="font-size:14px; font-weight:600">Revisão do cofre</span><span style="font-size:12px; line-height:1.4; color:#44544F">Última revisão há 14 meses.</span></span></a><a href="Regras.html" style="display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid #E6ECE9; text-decoration:none; color:#13211F; min-height:44px"><span style="flex:0 0 36px; width:36px; height:36px; border-radius:11px; background:#E2F0ED; color:#0E5A57; display:flex; align-items:center; justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 20px;"><path d="M12 3l10 18H2L12 3zM12 10v4M12 17.5h0"/></svg></span><span style="flex:1; display:flex; flex-direction:column; gap:1px"><span style="font-size:14px; font-weight:600">Regras de liberação</span><span style="font-size:12px; line-height:1.4; color:#44544F">Você usa o padrão de 30 dias.</span></span></a></div></section>
+    <section style="background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:20px; box-sizing:border-box; display:flex; flex-direction:column; gap:14px"><h2 style="margin:0; font-size:16px; font-weight:700">Para onde vão seus ativos</h2><div style="position:relative; width:150px; height:150px; align-self:center"><svg width="150" height="150" viewBox="0 0 160 160" aria-hidden="true" style="transform:rotate(-90deg)"><circle cx="80" cy="80" r="60" fill="none" stroke="#0E5A57" stroke-width="22" stroke-dasharray="154.1 222.9" stroke-dashoffset="0.0"/><circle cx="80" cy="80" r="60" fill="none" stroke="#2FA79A" stroke-width="22" stroke-dasharray="91.2 285.7" stroke-dashoffset="-157.1"/><circle cx="80" cy="80" r="60" fill="none" stroke="#7FD1C5" stroke-width="22" stroke-dasharray="59.8 317.2" stroke-dashoffset="-251.3"/><circle cx="80" cy="80" r="60" fill="none" stroke="#F5C86B" stroke-width="22" stroke-dasharray="59.8 317.2" stroke-dashoffset="-314.2"/></svg><div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center"><span style="font-size:30px; font-weight:700; line-height:1">12</span><span style="font-size:11px; color:#5E6E69">ativos no total</span></div></div><div style="display:flex; flex-wrap:wrap; gap:8px 14px"><span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#44544F"><span style="width:10px; height:10px; border-radius:3px; background:#0E5A57"></span>Direto 5</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#44544F"><span style="width:10px; height:10px; border-radius:3px; background:#2FA79A"></span>Partilha 3</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#44544F"><span style="width:10px; height:10px; border-radius:3px; background:#7FD1C5"></span>Encerrar 2</span><span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#B45309; font-weight:600"><span style="width:10px; height:10px; border-radius:3px; background:#F5C86B"></span>Sem destino 2</span></div></section>
+    <a href="NovoAtivo.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; height:52px">Adicionar ativo</a>
+  </main>
+  <nav aria-label="Principal" style="background:#0B3F3D; display:grid; grid-template-columns:repeat(5, minmax(0, 1fr))"><a href="Mobile-Painel.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:60px; font-size:11px; text-decoration:none; color:#FFFFFF; font-weight:700; box-shadow:inset 0 3px 0 #7FD1C5;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M4 11l8-7 8 7v9a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-9z"/></svg>Início</a><a href="Inventario.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:60px; font-size:11px; text-decoration:none; color:#CFE3DF; font-weight:500; "><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8"/></svg>Ativos</a><a href="Herdeiros.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:60px; font-size:11px; text-decoration:none; color:#CFE3DF; font-weight:500; "><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M9 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 010 7M18.5 14.4c1.9.8 3 2.7 3 5.6"/></svg>Herdeiros</a><a href="Regras.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:60px; font-size:11px; text-decoration:none; color:#CFE3DF; font-weight:500; "><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM9 12l2 2 4-4"/></svg>Liberação</a><a href="Seguranca.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:60px; font-size:11px; text-decoration:none; color:#CFE3DF; font-weight:500; "><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 22px;"><path d="M6 11h12a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1v-7a1 1 0 011-1zM8 11V8a4 4 0 018 0v3"/></svg>Segurança</a></nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aviso de óbito</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E5A57}a:hover{color:#0B3F3D}
+
+/* animações (estilo do vídeo): entrada em sequência e resposta ao toque */
+@keyframes hdSobe{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes hdPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+main section,main header,main>div>section,main>div>div,aside>div{animation:hdSobe .55s cubic-bezier(.2,.8,.2,1) both}
+main section:nth-of-type(2),main>div>div:nth-child(2){animation-delay:.06s}
+main section:nth-of-type(3),main>div>div:nth-child(3){animation-delay:.12s}
+main section:nth-of-type(4),main>div>div:nth-child(4){animation-delay:.18s}
+main section:nth-of-type(5),main>div>div:nth-child(5){animation-delay:.24s}
+a[href],button{transition:transform .15s ease,box-shadow .2s ease,filter .2s ease,background-color .2s ease}
+a[href]:hover,button:hover{filter:brightness(1.06)}
+a[href]:active,button:active{transform:scale(.98)}
+a[href]:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7FD1C5;outline-offset:2px}
+button[data-feito="1"]{animation:hdPop .35s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="min-height:760px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+
+  <main style="min-height:760px; display:flex; align-items:center; justify-content:center; padding:48px 24px; box-sizing:border-box">
+    <div style="width:100%; max-width:520px; background:#FFFFFF; border:1px solid #DCE3E0; border-radius:16px; box-shadow:0 1px 2px rgba(11,63,61,0.05), 0 10px 28px rgba(11,63,61,0.07); padding:40px; box-sizing:border-box; display:flex; flex-direction:column; gap:24px">
+      <img src="/_blob/93b931a4abcc42f7acfdd50e33a206b6" alt="Herança Digital" style="height:48px; width:auto; align-self:flex-start">
+      <div style="display:flex; flex-direction:column; gap:10px"><h1 style="margin:0; font-size:28px; line-height:1.2; font-weight:700">Você está bem, Maria?</h1><p style="margin:0; font-size:16px; line-height:1.6; color:#44544F">Hoje, 02/10, alguém abriu um pedido informando o seu falecimento. Se foi um engano, cancele agora.</p></div>
+      <div style="padding:16px 18px; background:#E2F0ED; border-radius:12px; font-size:14px; line-height:1.6; color:#13211F">Enquanto isso, seu cofre está congelado. Nenhum ativo foi liberado e nada será liberado antes do fim da carência.</div>
+      <div style="display:flex; flex-direction:column; gap:12px"><a href="Main.dc.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 24px; background:#0E5A57; color:#FFFFFF; border:0; border-radius:10px; font:inherit; font-size:15px; font-weight:600; cursor:pointer; text-decoration:none; height:52px">Entrar e cancelar o pedido</a><a href="Confirmar.dc.html" style="font-size:14px; font-weight:600; text-align:center">Ver detalhes do pedido</a></div>
+      <p style="margin:0; font-size:13px; line-height:1.55; color:#5E6E69">Enviamos este aviso por e-mail, SMS e notificação no app. Para cancelar, você entra na sua conta: nunca pedimos senha por e-mail ou WhatsApp. Se você não responder em 48 horas, avisamos também o seu contato de confiança.</p>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

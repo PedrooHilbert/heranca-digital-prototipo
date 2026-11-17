@@ -1,239 +1,208 @@
+/* Gera docs/ (site estático animado) a partir dos .dc.html em tools/fonte/.
+   Uso:  node tools/gen.mjs   (rode a partir da raiz do repositório) */
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const DOCS = 'C:/Users/user1/Desktop/heranca-digital-prototipo/docs';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const SRC = path.join(ROOT, 'tools', 'fonte');     // .dc.html originais
+const RT  = path.join(ROOT, 'tools', 'vendor');    // dc-runtime.js + logos
+const PNG = 'C:/Users/user1/Desktop/pitch-heranca-digital/public/screens'; // miniaturas (opcional)
+const DOCS = path.join(ROOT, 'docs');
 const TELAS = path.join(DOCS, 'telas');
+const ASSETS = path.join(DOCS, 'assets');
 
-// ---- Metadata ---------------------------------------------------------------
-// label = título em pt-BR, m = tela de celular, go = fluxo sugerido (botões)
-const S = {
-  Main:            { label: 'Entrada / Boas-vindas',        go: [['Entrar', 'Dashboard'], ['Verificar código', 'Codigo2FA'], ['Convite', 'Convite']] },
-  Codigo2FA:       { label: 'Código de verificação (2FA)',  go: [['Continuar', 'Configurar']] },
-  Convite:         { label: 'Convite de herdeiro',          go: [['Configurar', 'Configurar'], ['Aceitar no celular', 'Mobile-Convite']] },
-  Configurar:      { label: 'Configuração inicial',         go: [['Ir para o painel', 'Dashboard']] },
-
-  Dashboard:       { label: 'Painel do titular',            go: [['Ativos', 'Inventario'], ['Herdeiros', 'Herdeiros'], ['Regras', 'Regras'], ['Segurança', 'Seguranca']] },
-  Inventario:      { label: 'Inventário de ativos',         go: [['Novo ativo', 'NovoAtivo'], ['Estados', 'Estados'], ['Voltar ao painel', 'Dashboard']] },
-  NovoAtivo:       { label: 'Novo ativo',                   go: [['Salvar', 'Inventario']] },
-  Estados:         { label: 'Estados do ativo',             go: [['Voltar', 'Inventario']] },
-  Herdeiros:       { label: 'Herdeiros',                    go: [['Ver herdeiro', 'HerdeiroDetalhe'], ['Convidar', 'Convite'], ['Acesso liberado', 'AcessoLiberado']] },
-  HerdeiroDetalhe: { label: 'Detalhe do herdeiro',          go: [['Proteger', 'HerdeiroProteger'], ['Voltar', 'Herdeiros']] },
-  Regras:          { label: 'Regras de liberação',          go: [['Voltar ao painel', 'Dashboard']] },
-
-  AbrirPedido:     { label: 'Abrir pedido de acesso',       go: [['Enviar pedido', 'Solicitacao']] },
-  Solicitacao:     { label: 'Solicitação em análise',       go: [['Acesso liberado', 'AcessoLiberado'], ['Contestar', 'Contestacao'], ['Acompanhar no celular', 'Mobile-Solicitacao']] },
-  Contestacao:     { label: 'Contestação',                  go: [['Voltar', 'Solicitacao']] },
-  AcessoLiberado:  { label: 'Acesso liberado',              go: [['Abrir cofre', 'CofreTrancado'], ['Voltar ao início', 'Main']] },
-  HerdeiroProteger:{ label: 'Proteger herdeiro',            go: [['Concluir', 'Herdeiros']] },
-
-  Validador:       { label: 'Validador',                    go: [['Confirmar', 'Confirmar'], ['Aviso de óbito', 'AvisoObito']] },
-  Advogado:        { label: 'Advogado',                     go: [['Validar', 'Validador'], ['Confirmar', 'Confirmar']] },
-  AvisoObito:      { label: 'Aviso de óbito',               go: [['Encaminhar', 'Validador']] },
-  Confirmar:       { label: 'Confirmação',                  go: [['Concluir', 'AcessoLiberado']] },
-
-  Seguranca:       { label: 'Segurança',                    go: [['Cofre', 'CofreTrancado'], ['Aparelho novo', 'AparelhoNovo']] },
-  CofreTrancado:   { label: 'Cofre trancado',               go: [['Desbloquear', 'AcessoLiberado']] },
-  AparelhoNovo:    { label: 'Aparelho novo',                go: [['Confirmar kit', 'KitConfirmar']] },
-  KitConfirmar:    { label: 'Confirmar kit',                go: [['Concluir', 'Seguranca']] },
-
-  'Mobile-Painel':     { label: 'Celular · Painel',      m: true, go: [['Pedido', 'Mobile-Pedido'], ['Convite', 'Mobile-Convite'], ['Acesso', 'Mobile-Acesso']] },
-  'Mobile-Convite':    { label: 'Celular · Convite',     m: true, go: [['Aceitar', 'Mobile-Painel']] },
-  'Mobile-Pedido':     { label: 'Celular · Pedido',      m: true, go: [['Enviar', 'Mobile-Solicitacao']] },
-  'Mobile-Solicitacao':{ label: 'Celular · Solicitação', m: true, go: [['Acesso', 'Mobile-Acesso']] },
-  'Mobile-Acesso':     { label: 'Celular · Acesso',      m: true, go: [['Painel', 'Mobile-Painel']] },
+const TITLE = {
+  Main:'Entrar', Codigo2FA:'Entrar · Código de verificação', Convite:'Herdeiro · Convite recebido',
+  Configurar:'Titular · Primeiros passos', Dashboard:'Titular · Início', Inventario:'Titular · Ativos',
+  NovoAtivo:'Titular · Adicionar ativo', Estados:'Titular · Lista vazia e confirmação', Herdeiros:'Titular · Herdeiros',
+  HerdeiroDetalhe:'Titular · Detalhe do herdeiro', Regras:'Titular · Liberação', Seguranca:'Titular · Segurança',
+  AbrirPedido:'Herdeiro · Abrir pedido', Solicitacao:'Herdeiro · Acompanhar pedido', Contestacao:'Herdeiro · Contestar',
+  AcessoLiberado:'Herdeiro · Acesso liberado', Validador:'Validador · Pedidos', Advogado:'Advogado · Inventário',
+  AvisoObito:'Titular · Aviso de óbito (e-mail)', Confirmar:'Titular · Confirme que é você',
+  CofreTrancado:'Titular · Cofre trancado', AparelhoNovo:'Titular · Aprovar aparelho novo',
+  KitConfirmar:'Titular · Confirmar kit de recuperação', HerdeiroProteger:'Herdeiro · Proteger a conta',
+  'Mobile-Painel':'Titular · Início (celular)', 'Mobile-Convite':'Herdeiro · Convite (celular)',
+  'Mobile-Pedido':'Herdeiro · Abrir pedido (celular)', 'Mobile-Solicitacao':'Herdeiro · Acompanhar (celular)',
+  'Mobile-Acesso':'Herdeiro · Acesso liberado (celular)', 'Mobile-Login':'Titular · Entrar (celular)',
 };
 
 const GROUPS = [
-  ['Entrada',             ['Main', 'Codigo2FA', 'Convite', 'Configurar']],
-  ['Titular',             ['Dashboard', 'Inventario', 'NovoAtivo', 'Estados', 'Herdeiros', 'HerdeiroDetalhe', 'Regras']],
-  ['Herdeiro',            ['AbrirPedido', 'Solicitacao', 'Contestacao', 'AcessoLiberado', 'HerdeiroProteger']],
-  ['Validador / Advogado',['Validador', 'Advogado', 'AvisoObito', 'Confirmar']],
-  ['Segurança',           ['Seguranca', 'CofreTrancado', 'AparelhoNovo', 'KitConfirmar']],
-  ['Celular',             ['Mobile-Painel', 'Mobile-Convite', 'Mobile-Pedido', 'Mobile-Solicitacao', 'Mobile-Acesso']],
+  ['Entrada', ['Main','Codigo2FA','Convite','Configurar']],
+  ['Titular', ['Dashboard','Inventario','NovoAtivo','Estados','Herdeiros','HerdeiroDetalhe','Regras']],
+  ['Herdeiro', ['AbrirPedido','Solicitacao','Contestacao','AcessoLiberado','HerdeiroProteger']],
+  ['Validador / Advogado', ['Validador','Advogado','AvisoObito','Confirmar']],
+  ['Segurança', ['Seguranca','CofreTrancado','AparelhoNovo','KitConfirmar']],
+  ['Celular', ['Mobile-Painel','Mobile-Convite','Mobile-Pedido','Mobile-Solicitacao','Mobile-Acesso','Mobile-Login']],
 ];
+const ORDER = GROUPS.flatMap(([,a])=>a);
+const isMobile = n => n.startsWith('Mobile-');
 
-// flat order for prev/next
-const ORDER = GROUPS.flatMap(([, arr]) => arr);
-const groupOf = {};
-for (const [g, arr] of GROUPS) for (const n of arr) groupOf[n] = g;
+fs.mkdirSync(TELAS, {recursive:true});
+fs.mkdirSync(ASSETS, {recursive:true});
 
-const HEAD = (title) => `<!doctype html>
+for (const name of ORDER) {
+  let h = fs.readFileSync(path.join(SRC, name + '.dc.html'), 'utf8');
+  h = h.replace(/\.\/support\.js/g, '../dc-runtime.js');
+  h = h.replace(/\/_blob\/([0-9a-f]{32})/g, '../assets/$1.png');
+  h = h.replace(/\.dc\.html/g, '.html');
+  h = h.replace(/<html lang="pt-BR">/,
+    `<html lang="pt-BR" data-name="${name}" data-kind="${isMobile(name)?'mobile':'desktop'}">`);
+  h = h.replace(/<\/head>/,
+    `<link rel="stylesheet" href="../transicao.css">\n<script defer src="../transicao.js"></script>\n</head>`);
+  fs.writeFileSync(path.join(TELAS, name + '.html'), h);
+}
+
+fs.writeFileSync(path.join(DOCS, 'transicao.css'), `/* Transições entre telas + moldura de celular + navegação flutuante */
+html{background:#EAF1EE}
+body{opacity:0}
+body.hd-in{opacity:1;transition:opacity .30s ease}
+body.hd-out{opacity:0;transition:opacity .16s ease}
+html[data-kind="mobile"]{background:radial-gradient(1200px 600px at 50% -10%,#0E5A57,#0B3F3D)}
+html[data-kind="mobile"] body{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:30px 16px 90px;box-sizing:border-box}
+html[data-kind="mobile"] #dc-root{width:390px;max-width:100%;border:12px solid #0B3F3D;border-radius:44px;overflow:hidden;background:#fff;box-shadow:0 36px 80px rgba(0,0,0,.45);outline:1px solid rgba(255,255,255,.08)}
+#hd-nav{position:fixed;right:18px;bottom:18px;z-index:99999;
+  display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;
+  background:rgba(11,63,61,.92);backdrop-filter:blur(8px);box-shadow:0 12px 34px rgba(11,63,61,.4);
+  font-family:'Montserrat',system-ui,sans-serif}
+#hd-nav a,#hd-nav span{display:flex;align-items:center;justify-content:center;min-width:38px;height:38px;
+  padding:0 12px;border-radius:999px;color:#DCEBE7;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;user-select:none}
+#hd-nav a:hover{background:rgba(127,209,197,.22);color:#fff}
+#hd-nav .lbl{font-size:12px;font-weight:600;color:#7FD1C5;letter-spacing:.04em;cursor:default}
+#hd-nav .home{background:#7FD1C5;color:#0B3F3D}
+#hd-nav .home:hover{background:#9bded4;color:#0B3F3D}
+#hd-nav .off{opacity:.3;cursor:default}
+@media print{#hd-nav{display:none}}
+`);
+
+fs.writeFileSync(path.join(DOCS, 'transicao.js'),
+`// Transições entre telas (cross-fade) + navegação do protótipo
+var ORDER = ${JSON.stringify(ORDER)};
+var TITLE = ${JSON.stringify(TITLE)};
+(function(){
+  var cur = document.documentElement.dataset.name;
+  function go(url){ document.body.classList.remove('hd-in'); document.body.classList.add('hd-out'); setTimeout(function(){ location.href = url; }, 150); }
+  function start(){
+    requestAnimationFrame(function(){ document.body.classList.add('hd-in'); });
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href]');
+      if(!a) return;
+      var href = a.getAttribute('href');
+      if(!href || href.charAt(0)==='#' || /^https?:/i.test(href) || a.target==='_blank') return;
+      e.preventDefault(); go(href);
+    }, true);
+    var i = ORDER.indexOf(cur);
+    var prev = i>0 ? ORDER[i-1] : null;
+    var next = (i>=0 && i<ORDER.length-1) ? ORDER[i+1] : null;
+    var nav = document.createElement('div'); nav.id='hd-nav';
+    nav.innerHTML =
+      '<a class="home" href="../index.html" title="Índice de telas">⌂</a>' +
+      (prev ? '<a data-go="'+prev+'.html" title="'+(TITLE[prev]||prev)+'">‹</a>' : '<span class="off">‹</span>') +
+      '<span class="lbl">'+(i+1)+' / '+ORDER.length+'</span>' +
+      (next ? '<a data-go="'+next+'.html" title="'+(TITLE[next]||next)+'">›</a>' : '<span class="off">›</span>');
+    document.body.appendChild(nav);
+    nav.addEventListener('click', function(e){ var t = e.target.closest('[data-go]'); if(t){ e.preventDefault(); go(t.getAttribute('data-go')); } });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowLeft' && prev) go(prev+'.html');
+      else if(e.key==='ArrowRight' && next) go(next+'.html');
+      else if(e.key==='Escape') go('../index.html');
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+`);
+
+const cards = GROUPS.map(([g, arr]) => {
+  const phones = g === 'Celular';
+  const items = arr.map(n => {
+    const thumb = fs.existsSync(path.join(PNG, n + '.png'))
+      ? `<span class="thumb"><img src="assets/${n}.png" alt="${TITLE[n]}" loading="lazy"></span>`
+      : `<span class="thumb ph"><span>${TITLE[n]}</span></span>`;
+    return `      <a class="card" href="telas/${n}.html">
+        ${thumb}
+        <span class="cap">${TITLE[n]}<small>${n}</small></span>
+      </a>`;
+  }).join('\n');
+  return `    <section class="group">
+      <h2>${g}</h2>
+      <div class="grid${phones?' phones':''}">
+${items}
+      </div>
+    </section>`;
+}).join('\n');
+
+fs.writeFileSync(path.join(DOCS, 'index.html'), `<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title}</title>
+<title>Herança Digital · Protótipo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="ESTILO">`;
-
-// ---- CSS --------------------------------------------------------------------
-const CSS = `:root{
-  --teal-900:#0B3F3D; --teal-700:#0E5A57; --mint:#7FD1C5; --bg:#F3F6F4;
-  --ink:#0B3F3D; --muted:#5a726f; --line:#dfe7e4; --card:#ffffff;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-
-/* top bar */
-.bar{position:sticky;top:0;z-index:10;background:var(--teal-900);color:#fff;
-  display:flex;align-items:center;gap:14px;padding:12px 20px;box-shadow:0 2px 14px rgba(11,63,61,.18)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-.dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--mint),#fff);display:grid;place-items:center;color:var(--teal-900);font-weight:800}
-.bar .sep{opacity:.4}
-.bar .tag{margin-left:auto;background:rgba(127,209,197,.18);color:var(--mint);
-  border:1px solid rgba(127,209,197,.4);padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600}
-.bar a.back{color:var(--mint);font-weight:600;font-size:14px}
-
-/* index hero */
-.hero{padding:54px 20px 26px;text-align:center;background:
-  radial-gradient(1200px 400px at 50% -120px, rgba(127,209,197,.35), transparent),var(--bg)}
-.hero h1{margin:0;font-size:40px;font-weight:800;color:var(--teal-900)}
-.hero .tl{margin:12px auto 0;max-width:620px;color:var(--teal-700);font-weight:700;
-  letter-spacing:2px;font-size:13px}
-.hero .sub{margin:16px auto 0;max-width:640px;color:var(--muted);font-size:14px;line-height:1.6}
-
-.wrap{max-width:1180px;margin:0 auto;padding:10px 20px 70px}
-.group{margin-top:40px}
-.group h2{font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--teal-700);display:flex;align-items:center;gap:12px;margin:0 0 18px}
-.group h2::after{content:"";flex:1;height:1px;background:var(--line)}
-
-.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(11,63,61,.16);border-color:var(--mint)}
-.thumb{height:168px;background:#eef3f1;overflow:hidden;display:block}
-.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
-.card .cap{padding:12px 14px;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.card .cap small{color:var(--muted);font-weight:500}
-
-/* phone frame cards */
-.grid.phones{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
-.phones .thumb{height:360px;background:#0b3f3d0d;display:grid;place-items:center;padding:14px 0}
-.phones .thumb img{width:150px;height:auto;object-fit:cover;object-position:top;border-radius:18px;
-  box-shadow:0 10px 26px rgba(11,63,61,.22);border:4px solid #0B3F3D}
-
-.note{max-width:1180px;margin:36px auto 0;padding:16px 20px;color:var(--muted);font-size:13px;
-  border-top:1px solid var(--line);line-height:1.6}
-
-/* screen viewer */
-.stage{display:grid;place-items:start center;padding:26px 16px}
-.shot{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
-  box-shadow:0 18px 44px rgba(11,63,61,.14);max-width:1080px;width:100%}
-.shot.phone{max-width:390px;border-radius:30px;border:10px solid #0B3F3D;box-shadow:0 20px 50px rgba(11,63,61,.3)}
-.shot img{width:100%;height:auto}
-
-/* flow bar */
-.flow{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);
-  box-shadow:0 -6px 20px rgba(11,63,61,.08);padding:12px 16px}
-.flow .inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.flow .lbl{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
-  font-weight:700;font-size:14px;border:1px solid var(--teal-700);color:var(--teal-700);background:#fff;cursor:pointer}
-.btn:hover{background:var(--teal-700);color:#fff}
-.btn.primary{background:var(--teal-700);color:#fff}
-.btn.primary:hover{background:var(--teal-900);border-color:var(--teal-900)}
-.btn.ghost{border-color:var(--line);color:var(--muted)}
-.btn.ghost:hover{background:var(--bg);color:var(--teal-900)}
-.spacer{flex:1}
-@media(max-width:560px){.hero h1{font-size:30px}.flow .lbl{width:100%}}
-`;
-
-// ---- Screen page ------------------------------------------------------------
-function screenPage(name, i) {
-  const d = S[name];
-  const prev = ORDER[(i - 1 + ORDER.length) % ORDER.length];
-  const next = ORDER[(i + 1) % ORDER.length];
-  const go = (d.go || []).map(([lbl, t], k) =>
-    `<a class="btn ${k === 0 ? 'primary' : ''}" href="${t}.html">${lbl}</a>`).join('\n      ');
-  return HEAD(`${d.label} · Herança Digital`).replace('ESTILO', '../estilo.css') + `
-</head>
-<body>
-  <div class="bar">
-    <a class="back" href="../index.html">← Protótipo</a>
-    <span class="sep">/</span>
-    <div class="brand"><span class="dot">H</span> ${d.label}</div>
-    <span class="tag">${groupOf[name]}</span>
-  </div>
-
-  <div class="stage">
-    <div class="shot ${d.m ? 'phone' : ''}">
-      <img src="../assets/${name}.png" alt="${d.label}">
-    </div>
-  </div>
-
-  <div class="flow">
-    <div class="inner">
-      <span class="lbl">Fluxo sugerido</span>
-      ${go || '<span class="lbl" style="color:var(--teal-700)">tela final</span>'}
-      <span class="spacer"></span>
-      <a class="btn ghost" href="${prev}.html">← Anterior</a>
-      <a class="btn ghost" href="${next}.html">Próxima →</a>
-    </div>
-  </div>
-
-  <script>
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowLeft')location.href='${prev}.html';
-    if(e.key==='ArrowRight')location.href='${next}.html';
-    if(e.key==='Escape')location.href='../index.html';
-  });
-  </script>
-</body>
-</html>`;
-}
-
-// ---- Index ------------------------------------------------------------------
-function indexPage() {
-  const groups = GROUPS.map(([g, arr]) => {
-    const isPhones = g === 'Celular';
-    const cards = arr.map(n => {
-      const d = S[n];
-      return `      <a class="card" href="telas/${n}.html">
-        <span class="thumb"><img src="assets/${n}.png" alt="${d.label}" loading="lazy"></span>
-        <span class="cap">${d.label}<small>${n}</small></span>
-      </a>`;
-    }).join('\n');
-    return `    <section class="group">
-      <h2>${g}</h2>
-      <div class="grid${isPhones ? ' phones' : ''}">
-${cards}
-      </div>
-    </section>`;
-  }).join('\n');
-
-  return HEAD('Herança Digital · Protótipo').replace('ESTILO', 'estilo.css') + `
+<link rel="stylesheet" href="estilo.css">
 </head>
 <body>
   <div class="bar">
     <div class="brand"><span class="dot">H</span> Herança Digital</div>
-    <span class="tag">Protótipo · UC HUB</span>
+    <a class="play" href="telas/Main.html">▶ Iniciar protótipo</a>
   </div>
-
   <header class="hero">
     <h1>Herança Digital · Protótipo</h1>
     <p class="tl">SEUS DADOS, SUA HISTÓRIA, SEU FUTURO.</p>
-    <p class="sub">Protótipo navegável de alta fidelidade. ${ORDER.length} telas agrupadas por jornada —
-    clique em qualquer miniatura para abrir a tela e seguir o fluxo. Todos os dados são fictícios.</p>
+    <p class="sub">Protótipo navegável de alta fidelidade — ${ORDER.length} telas que se abrem de verdade, com as mesmas
+    animações do original e transições entre as telas. Clique em qualquer tela para entrar no fluxo. Dados fictícios.</p>
+    <a class="cta" href="telas/Main.html">Começar por “Entrar” →</a>
   </header>
-
   <main class="wrap">
-${groups}
-    <p class="note"><strong>Sobre esta publicação:</strong> as telas são as versões renderizadas (imagem) do
-    protótipo feito no Claude Design. Os botões “Fluxo sugerido” em cada tela reproduzem a navegação principal
-    entre as telas; não substituem clique por clique o original. Conteúdo, textos e dados não foram alterados.</p>
+${cards}
+    <p class="note"><strong>Como funciona:</strong> cada tela é renderizada ao vivo (não é imagem), com os botões e
+    animações do protótipo original; os links levam de uma tela a outra com transição. Conteúdo, textos e dados não
+    foram alterados. Protótipo independente do claude.ai.</p>
   </main>
 </body>
-</html>`;
-}
+</html>`);
 
-// ---- Write ------------------------------------------------------------------
-fs.writeFileSync(path.join(DOCS, 'estilo.css'), CSS);
-fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage());
-ORDER.forEach((n, i) => fs.writeFileSync(path.join(TELAS, n + '.html'), screenPage(n, i)));
-console.log('OK:', ORDER.length, 'telas +', 'index.html + estilo.css');
+fs.writeFileSync(path.join(DOCS, 'estilo.css'), `:root{--teal-900:#0B3F3D;--teal-700:#0E5A57;--mint:#7FD1C5;--bg:#F3F6F4;--ink:#0B3F3D;--muted:#5a726f;--line:#dfe7e4;--card:#fff}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.bar{position:sticky;top:0;z-index:10;background:var(--teal-900);color:#fff;display:flex;align-items:center;gap:14px;padding:12px 20px;box-shadow:0 2px 14px rgba(11,63,61,.18)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+.dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--mint),#fff);display:grid;place-items:center;color:var(--teal-900);font-weight:800}
+.bar .play{margin-left:auto;background:rgba(127,209,197,.16);color:var(--mint);border:1px solid rgba(127,209,197,.4);padding:7px 16px;border-radius:999px;font-size:13px;font-weight:700}
+.bar .play:hover{background:var(--mint);color:var(--teal-900)}
+.hero{padding:54px 20px 30px;text-align:center;background:radial-gradient(1200px 400px at 50% -120px,rgba(127,209,197,.35),transparent),var(--bg)}
+.hero h1{margin:0;font-size:40px;font-weight:800;color:var(--teal-900)}
+.hero .tl{margin:12px auto 0;max-width:620px;color:var(--teal-700);font-weight:700;letter-spacing:2px;font-size:13px}
+.hero .sub{margin:16px auto 0;max-width:660px;color:var(--muted);font-size:14px;line-height:1.6}
+.hero .cta{display:inline-block;margin-top:22px;background:var(--teal-700);color:#fff;padding:12px 24px;border-radius:999px;font-weight:700;font-size:15px;box-shadow:0 12px 26px rgba(14,90,87,.26)}
+.hero .cta:hover{background:var(--teal-900)}
+.wrap{max-width:1180px;margin:0 auto;padding:10px 20px 80px}
+.group{margin-top:40px}
+.group h2{font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-700);display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.group h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(11,63,61,.16);border-color:var(--mint)}
+.thumb{height:168px;background:#eef3f1;overflow:hidden;display:block}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.cap{padding:12px 14px;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cap small{color:var(--muted);font-weight:500;white-space:nowrap}
+.grid.phones{grid-template-columns:repeat(auto-fill,minmax(205px,1fr))}
+.phones .thumb{height:360px;background:#0b3f3d0d;display:grid;place-items:center;padding:14px 0}
+.phones .thumb img{width:150px;height:auto;max-height:332px;object-fit:cover;object-position:top;border-radius:18px;box-shadow:0 10px 26px rgba(11,63,61,.22);border:4px solid #0B3F3D}
+.thumb.ph{display:grid;place-items:center;background:linear-gradient(160deg,#0E5A57,#0B3F3D);color:#CFE3DF;text-align:center;font-weight:700;font-size:14px;padding:18px}
+.thumb.ph span{display:block;max-width:170px}
+.note{max-width:1180px;margin:36px auto 0;padding:16px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);line-height:1.6}
+@media(max-width:560px){.hero h1{font-size:30px}}
+`);
+
+fs.copyFileSync(path.join(RT, 'dc-runtime.js'), path.join(DOCS, 'dc-runtime.js'));
+for (const id of ['93b931a4abcc42f7acfdd50e33a206b6','b8637202c7a49cb5856b6a0cf382b5b7'])
+  fs.copyFileSync(path.join(RT, id + '.png'), path.join(ASSETS, id + '.png'));
+for (const n of ORDER) {
+  const p = path.join(PNG, n + '.png');
+  if (fs.existsSync(p)) fs.copyFileSync(p, path.join(ASSETS, n + '.png'));
+}
+console.log('OK:', ORDER.length, 'telas geradas em', DOCS);
