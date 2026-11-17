@@ -46,6 +46,8 @@ for (const name of ORDER) {
   h = h.replace(/\.\/support\.js/g, '../dc-runtime.js');
   h = h.replace(/\/_blob\/([0-9a-f]{32})/g, '../assets/$1.png');
   h = h.replace(/\.dc\.html/g, '.html');
+  // min-height do tamanho do quadro (>=600px) vira 100vh: sem vão em branco, mas cresce com o conteúdo
+  h = h.replace(/min-height:\s*(\d+)px/g, (m, n) => (+n >= 600 ? 'min-height:100vh' : m));
   h = h.replace(/<html lang="pt-BR">/,
     `<html lang="pt-BR" data-name="${name}" data-kind="${isMobile(name)?'mobile':'desktop'}">`);
   h = h.replace(/<\/head>/,

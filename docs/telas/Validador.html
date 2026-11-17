@@ -31,7 +31,7 @@ button[data-feito="1"]{animation:hdPop .35s ease}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </helmet>
-<div style="min-height:1300px; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
+<div style="min-height:100vh; font-family:'Montserrat',system-ui,sans-serif; color:#13211F; background:#F3F6F4">
   <header style="background:#0B3F3D; padding:14px 56px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px">
     <div style="display:flex; align-items:center; gap:10px">
       <img src="../assets/b8637202c7a49cb5856b6a0cf382b5b7.png" alt="" style="height:30px; width:auto">
@@ -45,7 +45,7 @@ button[data-feito="1"]{animation:hdPop .35s ease}
     </div>
   </header>
 
-  <main style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:900px">
+  <main style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:100vh">
     <aside style="flex:0 1 360px; min-width:300px; background:#FFFFFF; border-right:1px solid #DCE3E0; box-sizing:border-box; display:flex; flex-direction:column">
       <div style="padding:28px 20px 18px; display:flex; flex-direction:column; gap:12px"><h1 style="margin:0; font-size:22px; font-weight:700">Pedidos</h1><div style="display:flex; gap:8px; flex-wrap:wrap"><sc-for list="{{filtros}}" as="f" hint-placeholder-count="4"><button type="button" onClick="{{f.pick}}" aria-pressed="{{f.ativo}}" style="{{f.estilo}}">{{f.rotulo}}</button></sc-for></div></div>
       <sc-for list="{{casos}}" as="c" hint-placeholder-count="4">
