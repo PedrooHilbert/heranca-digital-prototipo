@@ -37,6 +37,9 @@ const GROUPS = [
 ];
 const ORDER = GROUPS.flatMap(([,a])=>a);
 const isMobile = n => n.startsWith('Mobile-');
+// telas de painel (menu lateral + conteúdo largo) ocupam a largura inteira; o resto fica centralizado
+const APP = new Set(['Dashboard','Inventario','Herdeiros','HerdeiroDetalhe','Regras','Seguranca','Estados','NovoAtivo']);
+const layoutOf = n => isMobile(n) ? 'mobile' : (APP.has(n) ? 'app' : 'card');
 
 fs.mkdirSync(TELAS, {recursive:true});
 fs.mkdirSync(ASSETS, {recursive:true});
@@ -49,7 +52,7 @@ for (const name of ORDER) {
   // min-height do tamanho do quadro (>=600px) vira 100vh: sem vão em branco, mas cresce com o conteúdo
   h = h.replace(/min-height:\s*(\d+)px/g, (m, n) => (+n >= 600 ? 'min-height:100vh' : m));
   h = h.replace(/<html lang="pt-BR">/,
-    `<html lang="pt-BR" data-name="${name}" data-kind="${isMobile(name)?'mobile':'desktop'}">`);
+    `<html lang="pt-BR" data-name="${name}" data-kind="${isMobile(name)?'mobile':'desktop'}" data-layout="${layoutOf(name)}">`);
   h = h.replace(/<\/head>/,
     `<link rel="stylesheet" href="../transicao.css">\n<script defer src="../transicao.js"></script>\n</head>`);
   fs.writeFileSync(path.join(TELAS, name + '.html'), h);
@@ -63,8 +66,10 @@ body.hd-out{opacity:0;transition:opacity .16s ease}
 html[data-kind="mobile"]{background:radial-gradient(1200px 600px at 50% -10%,#0E5A57,#0B3F3D)}
 html[data-kind="mobile"] body{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:30px 16px 90px;box-sizing:border-box}
 html[data-kind="mobile"] #dc-root{width:390px;max-width:100%;border:12px solid #0B3F3D;border-radius:44px;overflow:hidden;background:#fff;box-shadow:0 36px 80px rgba(0,0,0,.45);outline:1px solid rgba(255,255,255,.08)}
-/* telas de desktop com menu lateral: centraliza o conteúdo do <main> para não sobrar faixa branca à direita em monitores largos */
-html[data-kind="desktop"] main>div{margin-left:auto;margin-right:auto}
+/* telas de cartão (login, código, confirmações): centraliza o conteúdo do <main> */
+html[data-layout="card"] main>div{margin-left:auto;margin-right:auto}
+/* telas de painel (menu lateral): o conteúdo ocupa a largura inteira, sem faixa branca */
+html[data-layout="app"] main>div{max-width:none!important;margin:0!important}
 #hd-nav{position:fixed;right:18px;bottom:18px;z-index:99999;
   display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;
   background:rgba(11,63,61,.92);backdrop-filter:blur(8px);box-shadow:0 12px 34px rgba(11,63,61,.4);
